@@ -17,15 +17,15 @@ class MapViewModel(private val repository: ParkRepository = ParkRepository.getIn
 
     // Current user location
     private val _currentLocation = MutableLiveData<Location>()
-    val currentLocation: LiveData<Location> = _currentLocation
+    fun getCurrentLocation(): LiveData<Location> = _currentLocation
 
     // List of nearby parks
     private val _nearbyParks = MutableLiveData<List<Park>>()
     val nearbyParks: LiveData<List<Park>> = _nearbyParks
 
     // Selected park
-    private val _selectedPark = MutableLiveData<Park>()
-    val selectedPark: LiveData<Park> = _selectedPark
+    private val _selectedPark = MutableLiveData<Park?>()
+    val selectedPark: LiveData<Park?> = _selectedPark
 
     // Loading state
     private val _isLoading = MutableLiveData<Boolean>()
