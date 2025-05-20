@@ -1,33 +1,23 @@
 package com.trovaparco
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.fragment.app.FragmentContainerView
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 
-/**
- * Main activity for the application.
- * Serves as the container for fragments.
- */
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var navController: NavController
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Set up navigation
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
+            .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
 
-        // Set up action bar with navigation
-        NavigationUI.setupActionBarWithNavController(this, navController)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        if (navHostFragment == null) {
+            // Fragment non trovato, log se vuoi
+        }
     }
 }
