@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Base application theme -->
-    <style name="Theme.TrovaParco" parent="android:Theme.Material.Light">
-        <!-- Primary brand color. -->
-        <item name="android:colorPrimary">@color/primaryColor</item>
-        <item name="android:colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="android:colorAccent">@color/secondaryColor</item>
-        <item name="android:windowBackground">@color/white</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.TrovaParco" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#6200EE</item>
+        <item name="colorPrimaryDark">#3700B3</item>
+        <item name="colorAccent">#03DAC5</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 </resources>

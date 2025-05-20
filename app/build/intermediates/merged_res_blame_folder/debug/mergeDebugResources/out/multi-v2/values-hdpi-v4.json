@@ -4,7 +4,7 @@
             "outputFile": "com.trovaparco.app-mergeDebugResources-49:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\34cd3c3b84fd96b998a200c912a870b6\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\441745674c227f374289cce8a8a46aa4\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
