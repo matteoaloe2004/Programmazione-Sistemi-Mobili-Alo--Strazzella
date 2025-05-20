@@ -4,7 +4,7 @@
             "outputFile": "com.trovaparco.app-mergeDebugResources-49:/values-v26/values-v26.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\34cd3c3b84fd96b998a200c912a870b6\\transformed\\appcompat-1.6.1\\res\\values-v26\\values-v26.xml",
+                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\441745674c227f374289cce8a8a46aa4\\transformed\\appcompat-1.6.1\\res\\values-v26\\values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",
