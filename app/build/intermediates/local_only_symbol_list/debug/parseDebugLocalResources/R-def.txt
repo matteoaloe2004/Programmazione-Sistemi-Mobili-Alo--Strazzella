@@ -32,8 +32,10 @@ layout activity_main
 layout fragment_map
 layout fragment_park_detail
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
+raw map_style_no_poi
 string address_label
 string app_name
 string description_label

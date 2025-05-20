@@ -198,12 +198,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        // Get the park ID from marker tag
-        val parkId = marker.tag as? String
-        parkId?.let {
-            viewModel.selectPark(it)
+        // Trova l'ID del parco associato al marker cliccato
+        val parkId = markers.entries.find { it.value == marker }?.key
+
+        // Se troviamo il parkId, navighiamo alla schermata di dettaglio
+        parkId?.let { id ->
+            findNavController().navigate(
+                MapFragmentDirections.actionMapFragmentToParkDetailFragment(id)
+            )
         }
-        return false
+
+        return true
     }
 
     companion object {

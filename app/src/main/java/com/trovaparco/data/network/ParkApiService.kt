@@ -40,7 +40,7 @@ interface ParkApiService {
     suspend fun getParkDetails(@Query("id") parkId: String): Park
 
     companion object {
-        private const val BASE_URL = "https://api.parksdata.com/v1/"
+        private const val BASE_URL = "https://api.trovaparco.repl.co/v1/"
 
         /**
          * Create an instance of ParkApiService.
