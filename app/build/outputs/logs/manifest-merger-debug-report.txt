@@ -25,6 +25,7 @@ MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\matte\.g
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\5c0a98d205ab1f1297f28a581fbdb4eb\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\bff6a38d3fde178801c341b34cc47956\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\3c4b0e7dc19115f0475ae3e39419e8a1\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
+MERGED from [com.github.bumptech.glide:glide:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\212fbbfc3b3afe8f2d4c935779d5e678\transformed\jetified-glide-4.15.1\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\578836aaafa826fa134579bf27a62705\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\4eedb9bf87f54d96ac13ea95ea2d4154\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\b8134a682f14e73803273ba37c2d018b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
@@ -66,11 +67,13 @@ MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\matte\.gradle\caches\8.10.2
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\34773cbd2a2f54d72297e9534f2666d3\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\badd5d78df3c2bda9af6e8ef3d8bb08f\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\442d974d00e14a8721ebce45da3eee13\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\a53f9b34f92de05cd834b207f535c72c\transformed\jetified-gifdecoder-4.15.1\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\matte\.gradle\caches\8.10.2\transforms\d4d9bc255597b9d836738e9e8e5c7ee9\transformed\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8869fc3db0fb9c17f8e4fc4003bb5f40\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\3120df9bc296356bb85d5b4b3c82b76d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\85c67b48c370e0facd1b56c4476dd651\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\c04674a6b3ce229c156de8dbe9536d1f\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8b15706601124decc9645bba413d82fc\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\bb2e3534dcdf786cc483a7e1db474fce\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -113,6 +116,8 @@ MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\matte\.g
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\matte\.gradle\caches\8.10.2\transforms\e291163fa65173cf523e35306b547560\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\3c4b0e7dc19115f0475ae3e39419e8a1\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\3c4b0e7dc19115f0475ae3e39419e8a1\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
+MERGED from [com.github.bumptech.glide:glide:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\212fbbfc3b3afe8f2d4c935779d5e678\transformed\jetified-glide-4.15.1\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\212fbbfc3b3afe8f2d4c935779d5e678\transformed\jetified-glide-4.15.1\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\4eedb9bf87f54d96ac13ea95ea2d4154\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\4eedb9bf87f54d96ac13ea95ea2d4154\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\b8134a682f14e73803273ba37c2d018b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
@@ -129,12 +134,14 @@ MERGED from [androidx.core:core:1.12.0] C:\Users\matte\.gradle\caches\8.10.2\tra
 MERGED from [androidx.core:core:1.12.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\c38e5a3e5904797ad7f42d057f7fb1f6\transformed\core-1.12.0\AndroidManifest.xml:28:5-89
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\fead5fea46f2491dda97af99f51d233e\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\fead5fea46f2491dda97af99f51d233e\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\a53f9b34f92de05cd834b207f535c72c\transformed\jetified-gifdecoder-4.15.1\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\a53f9b34f92de05cd834b207f535c72c\transformed\jetified-gifdecoder-4.15.1\AndroidManifest.xml:9:5-20
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8869fc3db0fb9c17f8e4fc4003bb5f40\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8869fc3db0fb9c17f8e4fc4003bb5f40\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\3120df9bc296356bb85d5b4b3c82b76d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\3120df9bc296356bb85d5b4b3c82b76d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
 		INJECTED from C:\Users\matte\Desktop\Progetti Unibo\2 Anno\2 Semestre\Sviluppo Mobile\ParkFinder\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
@@ -199,6 +206,8 @@ MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\matte\.gradle\caches\8
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\bff6a38d3fde178801c341b34cc47956\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\3c4b0e7dc19115f0475ae3e39419e8a1\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\3c4b0e7dc19115f0475ae3e39419e8a1\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\212fbbfc3b3afe8f2d4c935779d5e678\transformed\jetified-glide-4.15.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\212fbbfc3b3afe8f2d4c935779d5e678\transformed\jetified-glide-4.15.1\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\578836aaafa826fa134579bf27a62705\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\578836aaafa826fa134579bf27a62705\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\4eedb9bf87f54d96ac13ea95ea2d4154\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
@@ -281,16 +290,20 @@ MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\matte\.gradle\caches\8.1
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\badd5d78df3c2bda9af6e8ef3d8bb08f\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\442d974d00e14a8721ebce45da3eee13\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\442d974d00e14a8721ebce45da3eee13\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\a53f9b34f92de05cd834b207f535c72c\transformed\jetified-gifdecoder-4.15.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\a53f9b34f92de05cd834b207f535c72c\transformed\jetified-gifdecoder-4.15.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\matte\.gradle\caches\8.10.2\transforms\d4d9bc255597b9d836738e9e8e5c7ee9\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\matte\.gradle\caches\8.10.2\transforms\d4d9bc255597b9d836738e9e8e5c7ee9\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8869fc3db0fb9c17f8e4fc4003bb5f40\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8869fc3db0fb9c17f8e4fc4003bb5f40\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\3120df9bc296356bb85d5b4b3c82b76d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\3120df9bc296356bb85d5b4b3c82b76d\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\85c67b48c370e0facd1b56c4476dd651\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\85c67b48c370e0facd1b56c4476dd651\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\e1553e2533d03728700f787fa9d39dfa\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\matte\.gradle\caches\8.10.2\transforms\cdb2cccfa9c765b4296515fc82233518\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\c04674a6b3ce229c156de8dbe9536d1f\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\c04674a6b3ce229c156de8dbe9536d1f\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\matte\.gradle\caches\8.10.2\transforms\8b15706601124decc9645bba413d82fc\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
