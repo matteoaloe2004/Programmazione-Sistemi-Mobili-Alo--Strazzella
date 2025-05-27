@@ -4,6 +4,7 @@ package com.trovaparco.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,9 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   public final TextView hoursLabel;
 
   @NonNull
+  public final ImageView ivParkImage;
+
+  @NonNull
   public final TextView tvParkAddress;
 
   @NonNull
@@ -52,14 +56,16 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   private FragmentParkDetailBinding(@NonNull NestedScrollView rootView,
       @NonNull TextView addressLabel, @NonNull TextView descriptionLabel,
       @NonNull TextView facilitiesLabel, @NonNull TextView hoursLabel,
-      @NonNull TextView tvParkAddress, @NonNull TextView tvParkDescription,
-      @NonNull TextView tvParkFacilities, @NonNull TextView tvParkName,
-      @NonNull TextView tvParkOpeningHours, @NonNull TextView tvParkRating) {
+      @NonNull ImageView ivParkImage, @NonNull TextView tvParkAddress,
+      @NonNull TextView tvParkDescription, @NonNull TextView tvParkFacilities,
+      @NonNull TextView tvParkName, @NonNull TextView tvParkOpeningHours,
+      @NonNull TextView tvParkRating) {
     this.rootView = rootView;
     this.addressLabel = addressLabel;
     this.descriptionLabel = descriptionLabel;
     this.facilitiesLabel = facilitiesLabel;
     this.hoursLabel = hoursLabel;
+    this.ivParkImage = ivParkImage;
     this.tvParkAddress = tvParkAddress;
     this.tvParkDescription = tvParkDescription;
     this.tvParkFacilities = tvParkFacilities;
@@ -119,6 +125,12 @@ public final class FragmentParkDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_park_image;
+      ImageView ivParkImage = ViewBindings.findChildViewById(rootView, id);
+      if (ivParkImage == null) {
+        break missingId;
+      }
+
       id = R.id.tv_park_address;
       TextView tvParkAddress = ViewBindings.findChildViewById(rootView, id);
       if (tvParkAddress == null) {
@@ -156,8 +168,8 @@ public final class FragmentParkDetailBinding implements ViewBinding {
       }
 
       return new FragmentParkDetailBinding((NestedScrollView) rootView, addressLabel,
-          descriptionLabel, facilitiesLabel, hoursLabel, tvParkAddress, tvParkDescription,
-          tvParkFacilities, tvParkName, tvParkOpeningHours, tvParkRating);
+          descriptionLabel, facilitiesLabel, hoursLabel, ivParkImage, tvParkAddress,
+          tvParkDescription, tvParkFacilities, tvParkName, tvParkOpeningHours, tvParkRating);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

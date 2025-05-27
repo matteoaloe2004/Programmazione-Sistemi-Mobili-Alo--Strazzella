@@ -4,59 +4,74 @@ import com.trovaparco.data.model.Park
 import com.trovaparco.data.network.ParkApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.UUID
 
-/**
- * Repository for park data.
- * Acts as a single source of truth for park data, abstracting the data source.
- */
-class ParkRepository(private val apiService: ParkApiService) {
-
-    /**
-     * Get nearby parks based on location.
-     *
-     * @param latitude Current latitude
-     * @param longitude Current longitude
-     * @param radius Search radius in meters
-     * @return List of nearby parks
-     */
-    suspend fun getNearbyParks(
-        latitude: Double,
-        longitude: Double,
-        radius: Int = 5000
-    ): Result<List<Park>> = withContext(Dispatchers.IO) {
-        try {
-            val parks = apiService.getNearbyParks(latitude, longitude, radius)
-            Result.success(parks)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
-
-    /**
-     * Get details of a specific park.
-     *
-     * @param parkId ID of the park
-     * @return Park details
-     */
-    suspend fun getParkDetails(parkId: String): Result<Park> = withContext(Dispatchers.IO) {
-        try {
-            val park = apiService.getParkDetails(parkId)
-            Result.success(park)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
+class ParkRepository private constructor(
+    private val apiService: ParkApiService,
+    private val apiKey: String
+) {
 
     companion object {
         @Volatile
         private var instance: ParkRepository? = null
 
-        /**
-         * Get singleton instance of ParkRepository.
-         */
-        fun getInstance(): ParkRepository {
+        fun getInstance(apiKey: String): ParkRepository {
             return instance ?: synchronized(this) {
-                instance ?: ParkRepository(ParkApiService.create()).also { instance = it }
+                instance ?: ParkRepository(ParkApiService.create(), apiKey).also { instance = it }
+            }
+        }
+    }
+
+    suspend fun getNearbyParks(latitude: Double, longitude: Double, radius: Int = 5000): Result<List<Park>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val location = "$latitude,$longitude"
+                val response = apiService.getNearbyParksFromGoogle(location, radius, "park", apiKey)
+
+                if (response.status == "OK") {
+                    val parks = response.results.map {
+                        Park(
+                            id = it.place_id,
+                            name = it.name,
+                            description = "", // Google Places non fornisce direttamente una descrizione
+                            latitude = it.geometry.location.lat,
+                            longitude = it.geometry.location.lng,
+                            address = "",
+                            facilities = emptyList(),
+                            images = emptyList(),
+                            openingHours = "",
+                            rating = 0f
+                        )
+                    }
+                    Result.success(parks)
+                } else {
+                    Result.failure(Exception("Errore API: ${response.status}"))
+                }
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    // Placeholder per getParkDetails – puoi espandere con un'altra API call o cache
+    suspend fun getParkDetails(parkId: String): Result<Park> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val dummy = Park(
+                    id = parkId,
+                    name = "Parco Dettagliato",
+                    description = "Descrizione dettagliata non disponibile.",
+                    latitude = 45.0,
+                    longitude = 9.0,
+                    address = "Indirizzo non disponibile",
+                    facilities = listOf("Panchine", "Area giochi", "Fontanelle"),
+                    images = listOf("https://source.unsplash.com/800x600/?park"),
+                    openingHours = "08:00 - 20:00",
+                    rating = 4.2f
+                )
+                Result.success(dummy)
+            } catch (e: Exception) {
+                Result.failure(e)
             }
         }
     }

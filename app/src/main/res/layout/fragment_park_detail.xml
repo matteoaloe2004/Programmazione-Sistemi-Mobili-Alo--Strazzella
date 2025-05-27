@@ -111,5 +111,18 @@
             app:layout_constraintTop_toBottomOf="@id/facilities_label"
             tools:text="• Playground\n• Restrooms\n• Picnic area\n• Walking trails\n• Parking" />
 
+        <ImageView
+            android:id="@+id/iv_park_image"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/tv_park_facilities"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="Immagine del parco"
+            tools:ignore="ContentDescription" />
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>
