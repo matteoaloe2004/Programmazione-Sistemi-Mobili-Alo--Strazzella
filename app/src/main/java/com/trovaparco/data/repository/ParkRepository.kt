@@ -1,5 +1,6 @@
 package com.trovaparco.data.repository
 
+import com.trovaparco.BuildConfig
 import com.trovaparco.data.model.Park
 import com.trovaparco.data.network.ParkApiService
 
@@ -14,8 +15,9 @@ class ParkRepository private constructor(private val api: ParkApiService) {
             val response = api.getNearbyParksFromGoogle(
                 location = "$latitude,$longitude",
                 radius = radius,
-                key = BuildConfig.MAPS_API_KEY
+                apiKey = BuildConfig.MAPS_API_KEY
             )
+
 
             if (response.status != "OK") {
                 return Result.failure(Exception("API error: ${response.status}"))

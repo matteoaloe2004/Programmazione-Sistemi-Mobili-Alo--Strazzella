@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.trovaparco'
+    namespace = "com.trovaparco"
     compileSdk 34
 
     defaultConfig {
@@ -15,6 +15,8 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "MAPS_API_KEY", "\"AIzaSyBhHTO8zvllwkHhsW0_JlMVoAJ2ewbHNFU\"")
     }
 
     buildTypes {
