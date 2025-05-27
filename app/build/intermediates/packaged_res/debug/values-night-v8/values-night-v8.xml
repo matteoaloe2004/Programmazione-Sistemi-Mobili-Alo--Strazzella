@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TrovaParco" parent="android:Theme.Material">
+        
+        <item name="android:colorPrimary">@color/primaryLightColor</item>
+        <item name="android:colorPrimaryDark">@color/primaryColor</item>
+        <item name="android:colorAccent">@color/secondaryLightColor</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+</resources>
