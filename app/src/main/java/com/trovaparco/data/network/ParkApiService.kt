@@ -28,8 +28,8 @@ interface ParkApiService {
 
     @GET("place/nearbysearch/json")
     suspend fun getNearbyParksFromGoogle(
-        @Query("location") location: String,
-        @Query("radius") radius: Int,
+        @Query("location") location: String, // es. "45.465,9.19"
+        @Query("radius") radius: Int = 5000,
         @Query("type") type: String = "park",
         @Query("key") apiKey: String
     ): GooglePlacesResponse

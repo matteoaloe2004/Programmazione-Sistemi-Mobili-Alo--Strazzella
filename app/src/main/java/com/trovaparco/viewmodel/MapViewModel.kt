@@ -9,11 +9,9 @@ import com.trovaparco.data.model.Park
 import com.trovaparco.data.repository.ParkRepository
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel for the map screen.
- * Handles data flow between repository and UI.
- */
-class MapViewModel(private val repository: ParkRepository = ParkRepository.getInstance()) : ViewModel() {
+class MapViewModel(
+    private val repository: ParkRepository
+) : ViewModel() {
 
     // Current user location
     private val _currentLocation = MutableLiveData<Location>()
@@ -35,23 +33,11 @@ class MapViewModel(private val repository: ParkRepository = ParkRepository.getIn
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    /**
-     * Update current location and fetch nearby parks.
-     *
-     * @param location New location
-     */
     fun updateLocation(location: Location) {
         _currentLocation.value = location
         fetchNearbyParks(location.latitude, location.longitude)
     }
 
-    /**
-     * Fetch nearby parks from the repository.
-     *
-     * @param latitude Current latitude
-     * @param longitude Current longitude
-     * @param radius Search radius in meters
-     */
     fun fetchNearbyParks(latitude: Double, longitude: Double, radius: Int = 5000) {
         _isLoading.value = true
         viewModelScope.launch {
@@ -68,11 +54,6 @@ class MapViewModel(private val repository: ParkRepository = ParkRepository.getIn
         }
     }
 
-    /**
-     * Select a park to view its details.
-     *
-     * @param parkId ID of the selected park
-     */
     fun selectPark(parkId: String) {
         _isLoading.value = true
         viewModelScope.launch {
@@ -89,9 +70,6 @@ class MapViewModel(private val repository: ParkRepository = ParkRepository.getIn
         }
     }
 
-    /**
-     * Clear the selected park.
-     */
     fun clearSelectedPark() {
         _selectedPark.value = null
     }
