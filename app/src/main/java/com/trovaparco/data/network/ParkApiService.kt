@@ -1,6 +1,5 @@
 package com.trovaparco.data.network
 
-import com.trovaparco.data.model.Park
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -10,41 +9,34 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-/**
- * API service interface for park data.
- * Uses Retrofit to make network requests.
- */
-interface ParkApiService {
-    /**
-     * Get nearby parks based on current location.
-     *
-     * @param latitude Current latitude
-     * @param longitude Current longitude
-     * @param radius Search radius in meters
-     * @return List of parks
-     */
-    @GET("parks/nearby")
-    suspend fun getNearbyParks(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
-        @Query("radius") radius: Int = 5000
-    ): List<Park>
+data class GooglePlaceResult(
+    val place_id: String,
+    val name: String,
+    val geometry: Geometry,
+    val types: List<String>
+)
 
-    /**
-     * Get details of a specific park.
-     *
-     * @param parkId ID of the park
-     * @return Park details
-     */
-    @GET("parks/details")
-    suspend fun getParkDetails(@Query("id") parkId: String): Park
+data class Geometry(val location: Location)
+data class Location(val lat: Double, val lng: Double)
+
+data class GooglePlacesResponse(
+    val results: List<GooglePlaceResult>,
+    val status: String
+)
+
+interface ParkApiService {
+
+    @GET("place/nearbysearch/json")
+    suspend fun getNearbyParksFromGoogle(
+        @Query("location") location: String, // es. "45.465,9.19"
+        @Query("radius") radius: Int = 5000,
+        @Query("type") type: String = "park",
+        @Query("key") apiKey: String
+    ): GooglePlacesResponse
 
     companion object {
-        private const val BASE_URL = "https://api.trovaparco.repl.co/v1/"
+        private const val BASE_URL = "https://maps.googleapis.com/maps/api/"
 
-        /**
-         * Create an instance of ParkApiService.
-         */
         fun create(): ParkApiService {
             val logger = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
