@@ -4,7 +4,6 @@ import com.trovaparco.data.model.Park
 import com.trovaparco.data.network.ParkApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.UUID
 
 class ParkRepository private constructor(
     private val apiService: ParkApiService,
@@ -33,7 +32,7 @@ class ParkRepository private constructor(
                         Park(
                             id = it.place_id,
                             name = it.name,
-                            description = "", // Google Places non fornisce direttamente una descrizione
+                            description = "", // Google Places non fornisce descrizione diretta
                             latitude = it.geometry.location.lat,
                             longitude = it.geometry.location.lng,
                             address = "",
@@ -45,31 +44,67 @@ class ParkRepository private constructor(
                     }
                     Result.success(parks)
                 } else {
-                    Result.failure(Exception("Errore API: ${response.status}"))
+                    Result.failure(Exception("Errore API Nearby Parks: ${response.status}"))
                 }
             } catch (e: Exception) {
-                Result.failure(e)
+                Result.failure(Exception("Eccezione durante chiamata Nearby Parks: ${e.localizedMessage}", e))
             }
         }
     }
 
-    // Placeholder per getParkDetails – puoi espandere con un'altra API call o cache
     suspend fun getParkDetails(parkId: String): Result<Park> {
         return withContext(Dispatchers.IO) {
             try {
-                val dummy = Park(
-                    id = parkId,
-                    name = "Parco Dettagliato",
-                    description = "Descrizione dettagliata non disponibile.",
-                    latitude = 45.0,
-                    longitude = 9.0,
-                    address = "Indirizzo non disponibile",
-                    facilities = listOf("Panchine", "Area giochi", "Fontanelle"),
-                    images = listOf("https://source.unsplash.com/800x600/?park"),
-                    openingHours = "08:00 - 20:00",
-                    rating = 4.2f
+                val response = apiService.getParkDetailsFromGoogle(
+                    placeId = parkId,
+                    apiKey = apiKey
                 )
-                Result.success(dummy)
+                if (response.status == "OK") {
+                    val detail = response.result
+
+                    // Mappa i tipi in facilities leggibili
+                    val facilities = detail.types?.map { type ->
+                        when (type) {
+                            "playground" -> "Area giochi"
+                            "wheelchair_accessible_entrance" -> "Accessibile ai disabili"
+                            "picnic_area" -> "Area picnic"
+                            "restroom" -> "Bagni pubblici"
+                            "parking" -> "Parcheggio"
+                            "trail" -> "Sentieri"
+                            "bicycle_store" -> "Noleggio biciclette"
+                            "dog_park" -> "Area cani"
+                            "garden" -> "Giardino"
+                            "fountain" -> "Fontana"
+                            "campground" -> "Campeggio"
+                            "sports_complex" -> "Impianti sportivi"
+                            "zoo" -> "Zoo"
+                            "museum" -> "Museo"
+                            "library" -> "Biblioteca"
+                            else -> type.replace('_', ' ').capitalize() // fallback: tipo "pulito"
+                        }
+                    } ?: emptyList()
+
+                    // Costruisci lista URL immagini da photo_reference
+                    val images = detail.photos?.map { photo ->
+                        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=$apiKey"
+                    } ?: emptyList()
+
+                    val park = Park(
+                        id = detail.place_id,
+                        name = detail.name,
+                        description = "", // Google non fornisce descrizione testuale
+                        latitude = detail.geometry.location.lat,
+                        longitude = detail.geometry.location.lng,
+                        address = detail.formatted_address ?: "",
+                        facilities = facilities,
+                        images = images,
+                        openingHours = detail.opening_hours?.weekday_text?.joinToString("\n") ?: "",
+                        rating = detail.rating ?: 0f
+                    )
+                    Result.success(park)
+                } else {
+                    Result.failure(Exception("Errore API dettagli parco: ${response.status}"))
+                }
             } catch (e: Exception) {
                 Result.failure(e)
             }

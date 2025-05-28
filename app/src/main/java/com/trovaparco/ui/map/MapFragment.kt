@@ -27,10 +27,8 @@ import com.trovaparco.R
 import com.trovaparco.data.model.Park
 import com.trovaparco.utils.isLocationEnabled
 import com.trovaparco.viewmodel.MapViewModel
+import android.util.Log
 
-/**
- * Fragment for displaying a map with nearby parks.
- */
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var viewModel: MapViewModel
@@ -64,43 +62,33 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize ViewModel
         viewModel = ViewModelProvider(requireActivity())[MapViewModel::class.java]
-
-        // Initialize location services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        // Set up the map
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Observe ViewModel data
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        // Observe nearby parks
         viewModel.nearbyParks.observe(viewLifecycleOwner) { parks ->
             displayParksOnMap(parks)
         }
 
-        // Observe selected park
         viewModel.selectedPark.observe(viewLifecycleOwner) { park ->
-            park?.let {
-                // Navigate to detail fragment
-                val bundle = Bundle().apply {
-                    putString("parkId", it.id)
-                }
-                findNavController().navigate(R.id.action_mapFragment_to_parkDetailFragment, bundle)
+            if (park != null) {
+                findNavController().navigate(
+                    MapFragmentDirections.actionMapFragmentToParkDetailFragment(park.id)
+                )
+                viewModel.clearSelectedPark()
             }
         }
 
-        // Observe loading state
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // Show/hide loading indicator if needed
+            // Gestisci indicatori di caricamento se vuoi
         }
 
-        // Observe error state
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
         }
@@ -109,16 +97,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
         googleMap?.setOnMarkerClickListener(this)
-
-        // Check and request location permissions
         checkLocationPermission()
     }
 
     private fun checkLocationPermission() {
         when {
-            hasLocationPermissions() -> {
-                enableMyLocation()
-            }
+            hasLocationPermissions() -> enableMyLocation()
             shouldShowRequestPermissionRationale() -> {
                 Toast.makeText(
                     requireContext(),
@@ -127,9 +111,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
                 ).show()
                 requestLocationPermissions()
             }
-            else -> {
-                requestLocationPermissions()
-            }
+            else -> requestLocationPermissions()
         }
     }
 
@@ -162,52 +144,37 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         googleMap?.isMyLocationEnabled = true
 
-        // Get current location and update map
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val currentLatLng = LatLng(it.latitude, it.longitude)
                 googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
-
-                // Update ViewModel with current location
                 viewModel.updateLocation(it)
             }
         }
     }
 
     private fun displayParksOnMap(parks: List<Park>) {
-        // Clear previous markers
         markers.values.forEach { it.remove() }
         markers.clear()
 
-        // Add markers for each park
         parks.forEach { park ->
-            val position = LatLng(park.latitude, park.longitude)
-            val marker = googleMap?.addMarker(
-                MarkerOptions()
-                    .position(position)
-                    .title(park.name)
-                    .snippet(park.description)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-            )
+            val markerOptions = MarkerOptions()
+                .position(LatLng(park.latitude, park.longitude))
+                .title(park.name)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
 
-            marker?.let {
-                markers[park.id] = it
-                it.tag = park.id
+            val marker = googleMap?.addMarker(markerOptions)
+            if (marker != null) {
+                markers[park.id] = marker
             }
         }
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        // Trova l'ID del parco associato al marker cliccato
-        val parkId = markers.entries.find { it.value == marker }?.key
-
-        // Se troviamo il parkId, navighiamo alla schermata di dettaglio
-        parkId?.let { id ->
-            findNavController().navigate(
-                MapFragmentDirections.actionMapFragmentToParkDetailFragment(id)
-            )
+        val parkEntry = markers.entries.find { it.value == marker }
+        parkEntry?.key?.let { parkId ->
+            viewModel.selectPark(parkId)
         }
-
         return true
     }
 

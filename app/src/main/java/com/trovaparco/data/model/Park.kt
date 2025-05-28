@@ -3,10 +3,6 @@ package com.trovaparco.data.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-/**
- * Data model for park information.
- * This model represents a park with all its attributes.
- */
 @JsonClass(generateAdapter = true)
 data class Park(
     @Json(name = "id") val id: String,
