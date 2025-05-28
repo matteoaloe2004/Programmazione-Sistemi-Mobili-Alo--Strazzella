@@ -20,6 +20,7 @@
     <string name="opening_hours_label">Orari di apertura:</string>
     <string name="opening_hours_not_available">Orari di apertura non disponibili</string>
     <string name="park_details">Dettagli Parco</string>
+    <string name="park_image">Immagine del parco</string>
     <string name="rating_format">%1$.1f/5.0</string>
     <string name="rating_not_available">Valutazione non disponibile</string>
     <style name="Theme.TrovaParco" parent="Theme.AppCompat.Light.NoActionBar">

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.trovaparco.app-mergeDebugResources-49:/values-small-v4/values-small-v4.xml",
+            "outputFile": "com.trovaparco.app-mergeDebugResources-50:/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Elia\\.gradle\\caches\\8.10.2\\transforms\\448b865aba075bd36591d5d06ce50791\\transformed\\material-1.11.0\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\448b865aba075bd36591d5d06ce50791\\transformed\\material-1.11.0\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

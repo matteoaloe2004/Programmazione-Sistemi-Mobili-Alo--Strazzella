@@ -4,10 +4,13 @@ package com.trovaparco.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,25 +24,28 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   private final NestedScrollView rootView;
 
   @NonNull
-  public final TextView addressLabel;
+  public final Button btnBackToMap;
 
   @NonNull
-  public final TextView descriptionLabel;
-
-  @NonNull
-  public final TextView facilitiesLabel;
-
-  @NonNull
-  public final TextView hoursLabel;
+  public final CardView cardInfo;
 
   @NonNull
   public final ImageView ivParkImage;
 
   @NonNull
+  public final View overlay;
+
+  @NonNull
+  public final ConstraintLayout parkDetailRoot;
+
+  @NonNull
+  public final NestedScrollView scrollView;
+
+  @NonNull
   public final TextView tvParkAddress;
 
   @NonNull
-  public final TextView tvParkDescription;
+  public final TextView tvParkDistance;
 
   @NonNull
   public final TextView tvParkFacilities;
@@ -54,20 +60,21 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   public final TextView tvParkRating;
 
   private FragmentParkDetailBinding(@NonNull NestedScrollView rootView,
-      @NonNull TextView addressLabel, @NonNull TextView descriptionLabel,
-      @NonNull TextView facilitiesLabel, @NonNull TextView hoursLabel,
-      @NonNull ImageView ivParkImage, @NonNull TextView tvParkAddress,
-      @NonNull TextView tvParkDescription, @NonNull TextView tvParkFacilities,
+      @NonNull Button btnBackToMap, @NonNull CardView cardInfo, @NonNull ImageView ivParkImage,
+      @NonNull View overlay, @NonNull ConstraintLayout parkDetailRoot,
+      @NonNull NestedScrollView scrollView, @NonNull TextView tvParkAddress,
+      @NonNull TextView tvParkDistance, @NonNull TextView tvParkFacilities,
       @NonNull TextView tvParkName, @NonNull TextView tvParkOpeningHours,
       @NonNull TextView tvParkRating) {
     this.rootView = rootView;
-    this.addressLabel = addressLabel;
-    this.descriptionLabel = descriptionLabel;
-    this.facilitiesLabel = facilitiesLabel;
-    this.hoursLabel = hoursLabel;
+    this.btnBackToMap = btnBackToMap;
+    this.cardInfo = cardInfo;
     this.ivParkImage = ivParkImage;
+    this.overlay = overlay;
+    this.parkDetailRoot = parkDetailRoot;
+    this.scrollView = scrollView;
     this.tvParkAddress = tvParkAddress;
-    this.tvParkDescription = tvParkDescription;
+    this.tvParkDistance = tvParkDistance;
     this.tvParkFacilities = tvParkFacilities;
     this.tvParkName = tvParkName;
     this.tvParkOpeningHours = tvParkOpeningHours;
@@ -101,27 +108,15 @@ public final class FragmentParkDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.address_label;
-      TextView addressLabel = ViewBindings.findChildViewById(rootView, id);
-      if (addressLabel == null) {
+      id = R.id.btn_back_to_map;
+      Button btnBackToMap = ViewBindings.findChildViewById(rootView, id);
+      if (btnBackToMap == null) {
         break missingId;
       }
 
-      id = R.id.description_label;
-      TextView descriptionLabel = ViewBindings.findChildViewById(rootView, id);
-      if (descriptionLabel == null) {
-        break missingId;
-      }
-
-      id = R.id.facilities_label;
-      TextView facilitiesLabel = ViewBindings.findChildViewById(rootView, id);
-      if (facilitiesLabel == null) {
-        break missingId;
-      }
-
-      id = R.id.hours_label;
-      TextView hoursLabel = ViewBindings.findChildViewById(rootView, id);
-      if (hoursLabel == null) {
+      id = R.id.card_info;
+      CardView cardInfo = ViewBindings.findChildViewById(rootView, id);
+      if (cardInfo == null) {
         break missingId;
       }
 
@@ -131,15 +126,29 @@ public final class FragmentParkDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.overlay;
+      View overlay = ViewBindings.findChildViewById(rootView, id);
+      if (overlay == null) {
+        break missingId;
+      }
+
+      id = R.id.park_detail_root;
+      ConstraintLayout parkDetailRoot = ViewBindings.findChildViewById(rootView, id);
+      if (parkDetailRoot == null) {
+        break missingId;
+      }
+
+      NestedScrollView scrollView = (NestedScrollView) rootView;
+
       id = R.id.tv_park_address;
       TextView tvParkAddress = ViewBindings.findChildViewById(rootView, id);
       if (tvParkAddress == null) {
         break missingId;
       }
 
-      id = R.id.tv_park_description;
-      TextView tvParkDescription = ViewBindings.findChildViewById(rootView, id);
-      if (tvParkDescription == null) {
+      id = R.id.tv_park_distance;
+      TextView tvParkDistance = ViewBindings.findChildViewById(rootView, id);
+      if (tvParkDistance == null) {
         break missingId;
       }
 
@@ -167,9 +176,9 @@ public final class FragmentParkDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentParkDetailBinding((NestedScrollView) rootView, addressLabel,
-          descriptionLabel, facilitiesLabel, hoursLabel, ivParkImage, tvParkAddress,
-          tvParkDescription, tvParkFacilities, tvParkName, tvParkOpeningHours, tvParkRating);
+      return new FragmentParkDetailBinding((NestedScrollView) rootView, btnBackToMap, cardInfo,
+          ivParkImage, overlay, parkDetailRoot, scrollView, tvParkAddress, tvParkDistance,
+          tvParkFacilities, tvParkName, tvParkOpeningHours, tvParkRating);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

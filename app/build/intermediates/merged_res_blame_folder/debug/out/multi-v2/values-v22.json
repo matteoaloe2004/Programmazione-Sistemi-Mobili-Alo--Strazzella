@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.trovaparco.app-mergeDebugResources-49:/values-v22/values-v22.xml",
+            "outputFile": "com.trovaparco.app-mergeDebugResources-50:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Elia\\.gradle\\caches\\8.10.2\\transforms\\bff6a38d3fde178801c341b34cc47956\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\matte\\.gradle\\caches\\8.10.2\\transforms\\bff6a38d3fde178801c341b34cc47956\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

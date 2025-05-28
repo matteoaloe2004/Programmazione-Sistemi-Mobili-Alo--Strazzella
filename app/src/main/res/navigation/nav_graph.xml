@@ -20,5 +20,10 @@
         <argument
             android:name="parkId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_parkDetailFragment_to_mapFragment"
+            app:destination="@id/mapFragment"
+            app:popUpTo="@id/mapFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
