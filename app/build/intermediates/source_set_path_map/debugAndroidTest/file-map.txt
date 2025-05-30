@@ -1,4 +1,0 @@
-com.trovaparco.test.app-androidTest-0 C:\Users\matte\Desktop\Progetti Unibo\2 Anno\2 Semestre\Sviluppo Mobile\ParkFinder\app\build\generated\res\resValues\androidTest\debug
-com.trovaparco.test.app-mergeDebugAndroidTestResources-1 C:\Users\matte\Desktop\Progetti Unibo\2 Anno\2 Semestre\Sviluppo Mobile\ParkFinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.trovaparco.test.app-mergeDebugAndroidTestResources-2 C:\Users\matte\Desktop\Progetti Unibo\2 Anno\2 Semestre\Sviluppo Mobile\ParkFinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.trovaparco.test.app-merged_res-3 C:\Users\matte\Desktop\Progetti Unibo\2 Anno\2 Semestre\Sviluppo Mobile\ParkFinder\app\build\intermediates\merged_res\debugAndroidTest
