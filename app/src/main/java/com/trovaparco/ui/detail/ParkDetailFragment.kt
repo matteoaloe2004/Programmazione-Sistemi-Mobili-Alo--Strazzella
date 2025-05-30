@@ -38,6 +38,7 @@ class ParkDetailFragment : Fragment() {
     private lateinit var tvWeatherHumidity: TextView
 
     private var parkId: String = ""
+    private var currentPark: Park? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -54,19 +55,24 @@ class ParkDetailFragment : Fragment() {
         }
 
         btnToggleFavorite.setOnClickListener {
-            viewModel.selectedPark.value?.let {
-                viewModel.toggleFavorite(it)
-                Toast.makeText(requireContext(), "Preferiti aggiornati", Toast.LENGTH_SHORT).show()
+            currentPark?.let { park ->
+                viewModel.toggleFavorite(park)
+                updateFavoriteButton()
+                val message = if (viewModel.favoriteParks.value?.any { it.id == park.id } == true)
+                    "Parco aggiunto ai preferiti"
+                else
+                    "Parco rimosso dai preferiti"
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
-
-        observeViewModel()
 
         btnBackToMap.setOnClickListener {
             Log.d("NavDebug", "Back to map clicked - clearing selectedPark and navigating with popUpTo")
             viewModel.clearSelectedPark()
             findNavController().navigate(R.id.action_parkDetailFragment_to_mapFragment)
         }
+
+        observeViewModel()
     }
 
     private fun initializeViews(view: View) {
@@ -88,12 +94,18 @@ class ParkDetailFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.selectedPark.observe(viewLifecycleOwner) { park ->
-            park?.let { displayParkDetails(it) }
+            if (park != null) {
+                currentPark = park
+                displayParkDetails(park)
+                updateFavoriteButton()
+            }
         }
 
         viewModel.getCurrentLocation().observe(viewLifecycleOwner) { userLocation ->
-            viewModel.selectedPark.value?.let { park ->
-                updateDistance(userLocation, park)
+            currentPark?.let { park ->
+                if (userLocation != null) {
+                    updateDistance(userLocation, park)
+                }
             }
         }
 
@@ -153,6 +165,17 @@ class ParkDetailFragment : Fragment() {
             "Distanza: %.1f km".format(km)
         }
         tvParkDistance.text = distanceText
+    }
+
+    private fun updateFavoriteButton() {
+        currentPark?.let { park ->
+            val isFavorite = viewModel.favoriteParks.value?.any { it.id == park.id } ?: false
+            if (isFavorite) {
+                btnToggleFavorite.text = "Rimuovi dai preferiti"
+            } else {
+                btnToggleFavorite.text = "Aggiungi ai preferiti"
+            }
+        }
     }
 
     override fun onDestroyView() {

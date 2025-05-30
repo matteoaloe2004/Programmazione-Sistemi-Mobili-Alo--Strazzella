@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         // Passa entrambe le chiavi al repository
         val repository = ParkRepository.getInstance(googleApiKey, weatherApiKey)
 
-        val factory = MapViewModelFactory(repository)
+        // Passa anche application alla factory
+        val factory = MapViewModelFactory(application, repository)
         viewModel = ViewModelProvider(this, factory).get(MapViewModel::class.java)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)

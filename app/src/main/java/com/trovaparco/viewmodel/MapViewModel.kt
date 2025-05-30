@@ -1,18 +1,23 @@
 package com.trovaparco.viewmodel
 
+import android.app.Application
 import android.location.Location
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.trovaparco.data.local.FavoritesStorage
 import com.trovaparco.data.model.Park
 import com.trovaparco.data.network.WeatherResponse
 import com.trovaparco.data.repository.ParkRepository
 import kotlinx.coroutines.launch
 
 class MapViewModel(
+    application: Application,
     private val repository: ParkRepository
-) : ViewModel() {
+) : AndroidViewModel(application) {
+
+    private val favoritesStorage = FavoritesStorage(application)
 
     private val _currentLocation = MutableLiveData<Location>()
     fun getCurrentLocation(): LiveData<Location> = _currentLocation
@@ -32,6 +37,15 @@ class MapViewModel(
     private val _weather = MutableLiveData<WeatherResponse?>()
     val weather: LiveData<WeatherResponse?> = _weather
 
+    private val _favoriteParks = MutableLiveData<List<Park>>()
+    val favoriteParks: LiveData<List<Park>> = _favoriteParks
+
+    private val favoriteMap = mutableMapOf<String, Park>()
+
+    init {
+        loadFavoriteParks()
+    }
+
     fun updateLocation(location: Location) {
         _currentLocation.value = location
         fetchNearbyParks(location.latitude, location.longitude)
@@ -45,6 +59,7 @@ class MapViewModel(
                 onSuccess = { parks ->
                     _nearbyParks.value = parks
                     _isLoading.value = false
+                    updateFavoriteParks()
                 },
                 onFailure = { throwable ->
                     _error.value = throwable.message ?: "Error fetching nearby parks"
@@ -84,31 +99,36 @@ class MapViewModel(
         }
     }
 
-    private val _favoriteParks = MutableLiveData<List<Park>>()
-    val favoriteParks: LiveData<List<Park>> = _favoriteParks
-
-    private val favoriteIds = mutableSetOf<String>()
-
     fun toggleFavorite(park: Park) {
-        if (favoriteIds.contains(park.id)) {
-            favoriteIds.remove(park.id)
+        if (favoriteMap.containsKey(park.id)) {
+            favoriteMap.remove(park.id)
         } else {
-            favoriteIds.add(park.id)
+            favoriteMap[park.id] = park
         }
+        saveFavoritesToStorage()
         updateFavoriteParks()
-    }
-
-    private fun updateFavoriteParks() {
-        val current = nearbyParks.value ?: return
-        _favoriteParks.value = current.filter { favoriteIds.contains(it.id) }
     }
 
     fun removeFavorite(park: Park) {
-        favoriteIds.remove(park.id)
-        updateFavoriteParks()
+        if (favoriteMap.containsKey(park.id)) {
+            favoriteMap.remove(park.id)
+            saveFavoritesToStorage()
+            updateFavoriteParks()
+        }
+    }
+
+    private fun updateFavoriteParks() {
+        _favoriteParks.value = favoriteMap.values.toList()
+    }
+
+    private fun saveFavoritesToStorage() {
+        favoritesStorage.saveFavorites(favoriteMap.values.toList())
     }
 
     fun loadFavoriteParks() {
+        val loaded = favoritesStorage.loadFavorites()
+        favoriteMap.clear()
+        loaded.forEach { favoriteMap[it.id] = it }
         updateFavoriteParks()
     }
 

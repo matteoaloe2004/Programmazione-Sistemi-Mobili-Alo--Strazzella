@@ -31,6 +31,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Torna alla mappa"
+        android:contentDescription="Torna alla schermata della mappa"
+        android:importantForAccessibility="yes"
         android:backgroundTint="#6200EE"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
