@@ -3936,8 +3936,8 @@ int layout select_dialog_singlechoice_material 0x7f0b006c
 int layout support_simple_spinner_dropdown_item 0x7f0b006d
 int menu drawer_menu 0x7f0d0000
 int mipmap ic_launcher 0x7f0e0000
-int mipmap ic_launcher_adaptive_back 0x7f0e0003
-int mipmap ic_launcher_adaptive_fore 0x7f0e0004
+int mipmap ic_launcher_adaptive_back 0x7f0e0001
+int mipmap ic_launcher_adaptive_fore 0x7f0e0002
 int navigation nav_graph 0x7f0f0000
 int plurals mtrl_badge_content_description 0x7f100000
 int raw map_style_no_poi 0x7f110000

@@ -65,6 +65,10 @@ class ParkRepository private constructor(
                     // Mappa i tipi in facilities leggibili
                     val facilities = detail.types?.map { type ->
                         when (type) {
+                            "Park" -> "Parco"
+                            "Point of interest" -> "Punto di interesse"
+                            "Establishment" -> "Stabilimenti"
+                            "Bar" -> "Bar"
                             "playground" -> "Area giochi"
                             "wheelchair_accessible_entrance" -> "Accessibile ai disabili"
                             "picnic_area" -> "Area picnic"
