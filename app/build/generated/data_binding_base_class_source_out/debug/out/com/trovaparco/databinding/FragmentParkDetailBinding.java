@@ -33,6 +33,9 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   public final CardView cardInfo;
 
   @NonNull
+  public final CardView cardWeather;
+
+  @NonNull
   public final ImageView ivParkImage;
 
   @NonNull
@@ -62,17 +65,29 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvParkRating;
 
+  @NonNull
+  public final TextView tvWeatherCondition;
+
+  @NonNull
+  public final TextView tvWeatherHumidity;
+
+  @NonNull
+  public final TextView tvWeatherTemperature;
+
   private FragmentParkDetailBinding(@NonNull NestedScrollView rootView,
       @NonNull Button btnBackToMap, @NonNull Button btnToggleFavorite, @NonNull CardView cardInfo,
-      @NonNull ImageView ivParkImage, @NonNull View overlay,
+      @NonNull CardView cardWeather, @NonNull ImageView ivParkImage, @NonNull View overlay,
       @NonNull ConstraintLayout parkDetailRoot, @NonNull NestedScrollView scrollView,
       @NonNull TextView tvParkAddress, @NonNull TextView tvParkDistance,
       @NonNull TextView tvParkFacilities, @NonNull TextView tvParkName,
-      @NonNull TextView tvParkOpeningHours, @NonNull TextView tvParkRating) {
+      @NonNull TextView tvParkOpeningHours, @NonNull TextView tvParkRating,
+      @NonNull TextView tvWeatherCondition, @NonNull TextView tvWeatherHumidity,
+      @NonNull TextView tvWeatherTemperature) {
     this.rootView = rootView;
     this.btnBackToMap = btnBackToMap;
     this.btnToggleFavorite = btnToggleFavorite;
     this.cardInfo = cardInfo;
+    this.cardWeather = cardWeather;
     this.ivParkImage = ivParkImage;
     this.overlay = overlay;
     this.parkDetailRoot = parkDetailRoot;
@@ -83,6 +98,9 @@ public final class FragmentParkDetailBinding implements ViewBinding {
     this.tvParkName = tvParkName;
     this.tvParkOpeningHours = tvParkOpeningHours;
     this.tvParkRating = tvParkRating;
+    this.tvWeatherCondition = tvWeatherCondition;
+    this.tvWeatherHumidity = tvWeatherHumidity;
+    this.tvWeatherTemperature = tvWeatherTemperature;
   }
 
   @Override
@@ -127,6 +145,12 @@ public final class FragmentParkDetailBinding implements ViewBinding {
       id = R.id.card_info;
       CardView cardInfo = ViewBindings.findChildViewById(rootView, id);
       if (cardInfo == null) {
+        break missingId;
+      }
+
+      id = R.id.card_weather;
+      CardView cardWeather = ViewBindings.findChildViewById(rootView, id);
+      if (cardWeather == null) {
         break missingId;
       }
 
@@ -186,10 +210,29 @@ public final class FragmentParkDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_weather_condition;
+      TextView tvWeatherCondition = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeatherCondition == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_weather_humidity;
+      TextView tvWeatherHumidity = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeatherHumidity == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_weather_temperature;
+      TextView tvWeatherTemperature = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeatherTemperature == null) {
+        break missingId;
+      }
+
       return new FragmentParkDetailBinding((NestedScrollView) rootView, btnBackToMap,
-          btnToggleFavorite, cardInfo, ivParkImage, overlay, parkDetailRoot, scrollView,
-          tvParkAddress, tvParkDistance, tvParkFacilities, tvParkName, tvParkOpeningHours,
-          tvParkRating);
+          btnToggleFavorite, cardInfo, cardWeather, ivParkImage, overlay, parkDetailRoot,
+          scrollView, tvParkAddress, tvParkDistance, tvParkFacilities, tvParkName,
+          tvParkOpeningHours, tvParkRating, tvWeatherCondition, tvWeatherHumidity,
+          tvWeatherTemperature);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

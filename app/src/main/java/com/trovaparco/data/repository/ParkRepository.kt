@@ -2,23 +2,55 @@ package com.trovaparco.data.repository
 
 import com.trovaparco.data.model.Park
 import com.trovaparco.data.network.ParkApiService
+import com.trovaparco.data.network.WeatherApiService
+import com.trovaparco.data.network.WeatherResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ParkRepository private constructor(
     private val apiService: ParkApiService,
-    private val apiKey: String
+    private val weatherApiService: WeatherApiService,
+    private val apiKey: String,
+    private val weatherApiKey: String
 ) {
 
     companion object {
         @Volatile
         private var instance: ParkRepository? = null
 
-        fun getInstance(apiKey: String): ParkRepository {
+        fun getInstance(apiKey: String, weatherApiKey: String): ParkRepository {
             return instance ?: synchronized(this) {
-                instance ?: ParkRepository(ParkApiService.create(), apiKey).also { instance = it }
+                instance ?: ParkRepository(
+                    ParkApiService.create(),
+                    WeatherApiService.create(),
+                    apiKey,
+                    weatherApiKey
+                ).also { instance = it }
             }
         }
+
+        private val typeToItalianMap = mapOf(
+            "park" to "Parco",
+            "point_of_interest" to "Punto di interesse",
+            "tourist_attraction" to "Attrazione Turistica",
+            "establishment" to "Stabilimento",
+            "bar" to "Bar",
+            "playground" to "Area giochi",
+            "wheelchair_accessible_entrance" to "Accessibile ai disabili",
+            "picnic_area" to "Area picnic",
+            "restroom" to "Bagni pubblici",
+            "parking" to "Parcheggio",
+            "trail" to "Sentieri",
+            "bicycle_store" to "Noleggio biciclette",
+            "dog_park" to "Area cani",
+            "garden" to "Giardino",
+            "fountain" to "Fontana",
+            "campground" to "Campeggio",
+            "sports_complex" to "Impianti sportivi",
+            "zoo" to "Zoo",
+            "museum" to "Museo",
+            "library" to "Biblioteca"
+        )
     }
 
     suspend fun getNearbyParks(latitude: Double, longitude: Double, radius: Int = 5000): Result<List<Park>> {
@@ -32,7 +64,7 @@ class ParkRepository private constructor(
                         Park(
                             id = it.place_id,
                             name = it.name,
-                            description = "", // Google Places non fornisce descrizione diretta
+                            description = "",
                             latitude = it.geometry.location.lat,
                             longitude = it.geometry.location.lng,
                             address = "",
@@ -62,33 +94,11 @@ class ParkRepository private constructor(
                 if (response.status == "OK") {
                     val detail = response.result
 
-                    // Mappa i tipi in facilities leggibili
                     val facilities = detail.types?.map { type ->
-                        when (type) {
-                            "Park" -> "Parco"
-                            "Point of interest" -> "Punto di interesse"
-                            "Establishment" -> "Stabilimenti"
-                            "Bar" -> "Bar"
-                            "playground" -> "Area giochi"
-                            "wheelchair_accessible_entrance" -> "Accessibile ai disabili"
-                            "picnic_area" -> "Area picnic"
-                            "restroom" -> "Bagni pubblici"
-                            "parking" -> "Parcheggio"
-                            "trail" -> "Sentieri"
-                            "bicycle_store" -> "Noleggio biciclette"
-                            "dog_park" -> "Area cani"
-                            "garden" -> "Giardino"
-                            "fountain" -> "Fontana"
-                            "campground" -> "Campeggio"
-                            "sports_complex" -> "Impianti sportivi"
-                            "zoo" -> "Zoo"
-                            "museum" -> "Museo"
-                            "library" -> "Biblioteca"
-                            else -> type.replace('_', ' ').capitalize() // fallback: tipo "pulito"
-                        }
+                        val key = type.lowercase()
+                        typeToItalianMap[key] ?: type.replace('_', ' ').replaceFirstChar { it.uppercase() }
                     } ?: emptyList()
 
-                    // Costruisci lista URL immagini da photo_reference
                     val images = detail.photos?.map { photo ->
                         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=$apiKey"
                     } ?: emptyList()
@@ -96,7 +106,7 @@ class ParkRepository private constructor(
                     val park = Park(
                         id = detail.place_id,
                         name = detail.name,
-                        description = "", // Google non fornisce descrizione testuale
+                        description = "",
                         latitude = detail.geometry.location.lat,
                         longitude = detail.geometry.location.lng,
                         address = detail.formatted_address ?: "",
@@ -111,6 +121,22 @@ class ParkRepository private constructor(
                 }
             } catch (e: Exception) {
                 Result.failure(e)
+            }
+        }
+    }
+
+    // Metodo per ottenere meteo attuale
+    suspend fun getParkWeather(latitude: Double, longitude: Double): Result<WeatherResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = weatherApiService.getCurrentWeather(
+                    lat = latitude,
+                    lon = longitude,
+                    apiKey = weatherApiKey
+                )
+                Result.success(response)
+            } catch (e: Exception) {
+                Result.failure(Exception("Errore chiamata API meteo: ${e.localizedMessage}", e))
             }
         }
     }

@@ -3315,6 +3315,7 @@ int id cache_measures 0x7f080069
 int id callMeasure 0x7f08006a
 int id cancel_button 0x7f08006b
 int id card_info 0x7f08006c
+int id card_weather 0x7f080223
 int id carryVelocity 0x7f08006d
 int id center 0x7f08006e
 int id centerCrop 0x7f08006f
@@ -3724,6 +3725,9 @@ int id tv_park_facilities 0x7f0801fe
 int id tv_park_name 0x7f0801ff
 int id tv_park_opening_hours 0x7f080200
 int id tv_park_rating 0x7f080201
+int id tv_weather_condition 0x7f080224
+int id tv_weather_humidity 0x7f080225
+int id tv_weather_temperature 0x7f080226
 int id unchecked 0x7f080202
 int id uniform 0x7f080203
 int id unlabeled 0x7f080204

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.trovaparco.data.model.Park
+import com.trovaparco.data.network.WeatherResponse
 import com.trovaparco.data.repository.ParkRepository
 import kotlinx.coroutines.launch
 
@@ -32,6 +33,10 @@ class MapViewModel(
     // Error state
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
+
+    // Meteo per il parco selezionato
+    private val _weather = MutableLiveData<WeatherResponse?>()
+    val weather: LiveData<WeatherResponse?> = _weather
 
     fun updateLocation(location: Location) {
         _currentLocation.value = location
@@ -61,6 +66,8 @@ class MapViewModel(
                 onSuccess = { park ->
                     _selectedPark.value = park
                     _isLoading.value = false
+                    // Quando selezioni un parco, carica anche il meteo
+                    fetchWeatherForPark(park.latitude, park.longitude)
                 },
                 onFailure = { throwable ->
                     _error.value = throwable.message ?: "Error fetching park details"
@@ -69,6 +76,21 @@ class MapViewModel(
             )
         }
     }
+
+    // Nuovo metodo per caricare il meteo del parco
+    fun fetchWeatherForPark(latitude: Double, longitude: Double) {
+        viewModelScope.launch {
+            repository.getParkWeather(latitude, longitude).fold(
+                onSuccess = { weatherResponse ->
+                    _weather.value = weatherResponse
+                },
+                onFailure = {
+                    _weather.value = null
+                }
+            )
+        }
+    }
+
     private val _favoriteParks = MutableLiveData<List<Park>>()
     val favoriteParks: LiveData<List<Park>> = _favoriteParks
 
@@ -83,20 +105,22 @@ class MapViewModel(
         updateFavoriteParks()
     }
 
-
     private fun updateFavoriteParks() {
         val current = nearbyParks.value ?: return
         _favoriteParks.value = current.filter { favoriteIds.contains(it.id) }
     }
+
     fun removeFavorite(park: Park) {
-        favoriteIds.remove(park.id)  // Rimuovi l'id dai preferiti
-        updateFavoriteParks()         // Aggiorna la lista di preferiti
+        favoriteIds.remove(park.id)
+        updateFavoriteParks()
     }
+
     fun loadFavoriteParks() {
         updateFavoriteParks()
     }
 
     fun clearSelectedPark() {
         _selectedPark.value = null
+        _weather.value = null
     }
 }

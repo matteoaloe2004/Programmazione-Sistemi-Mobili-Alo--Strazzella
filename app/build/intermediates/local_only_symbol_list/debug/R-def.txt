@@ -28,6 +28,7 @@ id btn_back_to_map
 id btn_remove_favorite
 id btn_toggle_favorite
 id card_info
+id card_weather
 id drawer_layout
 id fab_favorites
 id favoriteParksFragment
@@ -53,6 +54,9 @@ id tv_park_facilities
 id tv_park_name
 id tv_park_opening_hours
 id tv_park_rating
+id tv_weather_condition
+id tv_weather_humidity
+id tv_weather_temperature
 layout activity_main
 layout fragment_favorite_parks
 layout fragment_map

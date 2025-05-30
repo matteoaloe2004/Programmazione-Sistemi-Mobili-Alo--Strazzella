@@ -3316,6 +3316,7 @@ id cache_measures
 id callMeasure
 id cancel_button
 id card_info
+id card_weather
 id carryVelocity
 id center
 id centerCrop
@@ -3725,6 +3726,9 @@ id tv_park_facilities
 id tv_park_name
 id tv_park_opening_hours
 id tv_park_rating
+id tv_weather_condition
+id tv_weather_humidity
+id tv_weather_temperature
 id unchecked
 id uniform
 id unlabeled

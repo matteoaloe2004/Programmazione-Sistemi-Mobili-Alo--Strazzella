@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.trovaparco.R
@@ -33,6 +32,11 @@ class ParkDetailFragment : Fragment() {
     private lateinit var btnBackToMap: Button
     private lateinit var btnToggleFavorite: Button
 
+    // Meteo UI
+    private lateinit var tvWeatherCondition: TextView
+    private lateinit var tvWeatherTemperature: TextView
+    private lateinit var tvWeatherHumidity: TextView
+
     private var parkId: String = ""
 
     override fun onCreateView(
@@ -48,7 +52,6 @@ class ParkDetailFragment : Fragment() {
             parkId = it
             viewModel.selectPark(parkId)
         }
-        btnToggleFavorite = view.findViewById(R.id.btn_toggle_favorite)
 
         btnToggleFavorite.setOnClickListener {
             viewModel.selectedPark.value?.let {
@@ -61,7 +64,7 @@ class ParkDetailFragment : Fragment() {
 
         btnBackToMap.setOnClickListener {
             Log.d("NavDebug", "Back to map clicked - clearing selectedPark and navigating with popUpTo")
-            viewModel.clearSelectedPark()  // pulisco la selezione
+            viewModel.clearSelectedPark()
             findNavController().navigate(R.id.action_parkDetailFragment_to_mapFragment)
         }
     }
@@ -75,6 +78,12 @@ class ParkDetailFragment : Fragment() {
         tvParkDistance = view.findViewById(R.id.tv_park_distance)
         ivParkImage = view.findViewById(R.id.iv_park_image)
         btnBackToMap = view.findViewById(R.id.btn_back_to_map)
+        btnToggleFavorite = view.findViewById(R.id.btn_toggle_favorite)
+
+        // Meteo
+        tvWeatherCondition = view.findViewById(R.id.tv_weather_condition)
+        tvWeatherTemperature = view.findViewById(R.id.tv_weather_temperature)
+        tvWeatherHumidity = view.findViewById(R.id.tv_weather_humidity)
     }
 
     private fun observeViewModel() {
@@ -85,6 +94,22 @@ class ParkDetailFragment : Fragment() {
         viewModel.getCurrentLocation().observe(viewLifecycleOwner) { userLocation ->
             viewModel.selectedPark.value?.let { park ->
                 updateDistance(userLocation, park)
+            }
+        }
+
+        viewModel.weather.observe(viewLifecycleOwner) { weather ->
+            if (weather != null) {
+                val condition = weather.weather.firstOrNull()?.description ?: "N/D"
+                val temperature = "${weather.main.temp}°C"
+                val humidity = "Umidità: ${weather.main.humidity}%"
+
+                tvWeatherCondition.text = condition.replaceFirstChar { it.uppercase() }
+                tvWeatherTemperature.text = temperature
+                tvWeatherHumidity.text = humidity
+            } else {
+                tvWeatherCondition.text = "Meteo non disponibile"
+                tvWeatherTemperature.text = ""
+                tvWeatherHumidity.text = ""
             }
         }
 
@@ -130,11 +155,9 @@ class ParkDetailFragment : Fragment() {
         tvParkDistance.text = distanceText
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.clearSelectedPark()
         Log.d("NavDebug", "Cleared selectedPark onDestroyView")
     }
-
 }

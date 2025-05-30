@@ -68,12 +68,12 @@
         "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\mipmap-xxxhdpi\\ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-merged_res-52:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\drawable\\ic_launcher_background.xml"
-    },
-    {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-merged_res-52:\\mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat",
         "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\mipmap-xhdpi\\ic_launcher_adaptive_fore.png"
+    },
+    {
+        "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-merged_res-52:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\drawable\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-merged_res-52:\\mipmap-hdpi_ic_launcher.png.flat",
@@ -92,8 +92,8 @@
         "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\mipmap-hdpi\\ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "com.trovaparco.app-merged_res-52:/layout_item_park.xml.flat",
-        "source": "com.trovaparco.app-main-54:/layout/item_park.xml"
+        "merged": "com.trovaparco.app-merged_res-52:/layout_fragment_park_detail.xml.flat",
+        "source": "com.trovaparco.app-main-54:/layout/fragment_park_detail.xml"
     },
     {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-merged_res-52:\\mipmap-xxhdpi_ic_launcher_adaptive_fore.png.flat",

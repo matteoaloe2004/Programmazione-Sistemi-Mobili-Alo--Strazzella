@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.trovaparco.app-mergeDebugResources-51:/layout/fragment_park_detail.xml",
+        "source": "com.trovaparco.app-main-54:/layout/fragment_park_detail.xml"
+    },
+    {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-mergeDebugResources-51:\\layout\\item_park.xml",
         "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\layout\\item_park.xml"
     },
@@ -14,10 +18,6 @@
     {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-mergeDebugResources-51:\\layout\\fragment_park_detail.xml",
         "source": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-main-54:\\layout\\fragment_park_detail.xml"
-    },
-    {
-        "merged": "com.trovaparco.app-mergeDebugResources-51:/layout/item_park.xml",
-        "source": "com.trovaparco.app-main-54:/layout/item_park.xml"
     },
     {
         "merged": "C:\\Users\\matte\\.gradle\\daemon\\8.10.2\\com.trovaparco.app-mergeDebugResources-51:\\layout\\activity_main.xml",

@@ -21,27 +21,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Ottieni l’istanza del repository
-        val apiKey = "AIzaSyBhHTO8zvllwkHhsW0_JlMVoAJ2ewbHNFU" // metti qui la tua chiave API reale
-        val repository = ParkRepository.getInstance(apiKey)
+        // API key di Google
+        val googleApiKey = "AIzaSyBhHTO8zvllwkHhsW0_JlMVoAJ2ewbHNFU"
+        // API key per il meteo
+        val weatherApiKey = "2ffc03a059d5b3528a70c81c73402e02"
 
-        // Crea la factory passando il repository
+        // Passa entrambe le chiavi al repository
+        val repository = ParkRepository.getInstance(googleApiKey, weatherApiKey)
+
         val factory = MapViewModelFactory(repository)
-
-        // Inizializza il ViewModel con la factory
         viewModel = ViewModelProvider(this, factory).get(MapViewModel::class.java)
 
-        // Inizializza la Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
 
-        // Inizializza il DrawerLayout e NavigationView
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
 
-        // Osserva i parchi vicini e aggiorna il menu
         viewModel.nearbyParks.observe(this) { parks ->
             val menu = navigationView.menu
             val group = menu.findItem(R.id.nearby_parks_group)?.subMenu
@@ -68,14 +66,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Osserva la posizione corrente e aggiorna i parchi
         viewModel.getCurrentLocation().observe(this) { location ->
             location?.let {
                 viewModel.fetchNearbyParks(it.latitude, it.longitude)
             }
         }
 
-        // Apri il drawer al click sull’icona
         toolbar.setNavigationOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
