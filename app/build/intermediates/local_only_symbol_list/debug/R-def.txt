@@ -19,6 +19,7 @@ drawable ic_location_on_24
 drawable ic_menu
 drawable ic_star_24
 drawable recycler_background_no_shadow
+drawable rounded_bg
 id action_favoriteParksFragment_to_mapFragment
 id action_favoriteParksFragment_to_parkDetailFragment
 id action_mapFragment_to_favoriteParksFragment
@@ -55,8 +56,11 @@ id tv_park_name
 id tv_park_opening_hours
 id tv_park_rating
 id tv_weather_condition
+id tv_weather_condition_map
 id tv_weather_humidity
+id tv_weather_temp_map
 id tv_weather_temperature
+id weather_info_container
 layout activity_main
 layout fragment_favorite_parks
 layout fragment_map

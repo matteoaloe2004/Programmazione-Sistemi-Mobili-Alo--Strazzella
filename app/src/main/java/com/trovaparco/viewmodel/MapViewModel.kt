@@ -14,33 +14,28 @@ class MapViewModel(
     private val repository: ParkRepository
 ) : ViewModel() {
 
-    // Current user location
     private val _currentLocation = MutableLiveData<Location>()
     fun getCurrentLocation(): LiveData<Location> = _currentLocation
 
-    // List of nearby parks
     private val _nearbyParks = MutableLiveData<List<Park>>()
     val nearbyParks: LiveData<List<Park>> = _nearbyParks
 
-    // Selected park
     private val _selectedPark = MutableLiveData<Park?>()
     val selectedPark: LiveData<Park?> = _selectedPark
 
-    // Loading state
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    // Error state
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    // Meteo per il parco selezionato
     private val _weather = MutableLiveData<WeatherResponse?>()
     val weather: LiveData<WeatherResponse?> = _weather
 
     fun updateLocation(location: Location) {
         _currentLocation.value = location
         fetchNearbyParks(location.latitude, location.longitude)
+        fetchWeatherForPark(location.latitude, location.longitude)
     }
 
     fun fetchNearbyParks(latitude: Double, longitude: Double, radius: Int = 5000) {
@@ -66,7 +61,6 @@ class MapViewModel(
                 onSuccess = { park ->
                     _selectedPark.value = park
                     _isLoading.value = false
-                    // Quando selezioni un parco, carica anche il meteo
                     fetchWeatherForPark(park.latitude, park.longitude)
                 },
                 onFailure = { throwable ->
@@ -77,7 +71,6 @@ class MapViewModel(
         }
     }
 
-    // Nuovo metodo per caricare il meteo del parco
     fun fetchWeatherForPark(latitude: Double, longitude: Double) {
         viewModelScope.launch {
             repository.getParkWeather(latitude, longitude).fold(

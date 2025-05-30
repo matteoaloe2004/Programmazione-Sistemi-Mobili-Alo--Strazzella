@@ -4,7 +4,9 @@ package com.trovaparco.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,11 +28,25 @@ public final class FragmentMapBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
+  @NonNull
+  public final TextView tvWeatherConditionMap;
+
+  @NonNull
+  public final TextView tvWeatherTempMap;
+
+  @NonNull
+  public final LinearLayout weatherInfoContainer;
+
   private FragmentMapBinding(@NonNull ConstraintLayout rootView,
-      @NonNull FloatingActionButton fabFavorites, @NonNull ProgressBar progressBar) {
+      @NonNull FloatingActionButton fabFavorites, @NonNull ProgressBar progressBar,
+      @NonNull TextView tvWeatherConditionMap, @NonNull TextView tvWeatherTempMap,
+      @NonNull LinearLayout weatherInfoContainer) {
     this.rootView = rootView;
     this.fabFavorites = fabFavorites;
     this.progressBar = progressBar;
+    this.tvWeatherConditionMap = tvWeatherConditionMap;
+    this.tvWeatherTempMap = tvWeatherTempMap;
+    this.weatherInfoContainer = weatherInfoContainer;
   }
 
   @Override
@@ -72,7 +88,26 @@ public final class FragmentMapBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentMapBinding((ConstraintLayout) rootView, fabFavorites, progressBar);
+      id = R.id.tv_weather_condition_map;
+      TextView tvWeatherConditionMap = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeatherConditionMap == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_weather_temp_map;
+      TextView tvWeatherTempMap = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeatherTempMap == null) {
+        break missingId;
+      }
+
+      id = R.id.weather_info_container;
+      LinearLayout weatherInfoContainer = ViewBindings.findChildViewById(rootView, id);
+      if (weatherInfoContainer == null) {
+        break missingId;
+      }
+
+      return new FragmentMapBinding((ConstraintLayout) rootView, fabFavorites, progressBar,
+          tvWeatherConditionMap, tvWeatherTempMap, weatherInfoContainer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

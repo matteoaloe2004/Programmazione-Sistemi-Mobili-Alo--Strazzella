@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -28,7 +29,6 @@ import com.trovaparco.R
 import com.trovaparco.data.model.Park
 import com.trovaparco.utils.isLocationEnabled
 import com.trovaparco.viewmodel.MapViewModel
-import android.util.Log
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -37,6 +37,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     private var googleMap: GoogleMap? = null
     private val markers = mutableMapOf<String, Marker>()
     private lateinit var fabFavorites: FloatingActionButton
+    private lateinit var tvWeatherTempMap: TextView
+    private lateinit var tvWeatherConditionMap: TextView
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -69,9 +71,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         fabFavorites = view.findViewById(R.id.fab_favorites)
         fabFavorites.setOnClickListener {
-            // Naviga alla lista dei parchi preferiti
             findNavController().navigate(R.id.action_mapFragment_to_favoriteParksFragment)
         }
+
+        tvWeatherTempMap = view.findViewById(R.id.tv_weather_temp_map)
+        tvWeatherConditionMap = view.findViewById(R.id.tv_weather_condition_map)
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -87,8 +91,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         viewModel.selectedPark.observe(viewLifecycleOwner) { park ->
             park?.let {
                 val navController = findNavController()
-                val currentDestination = navController.currentDestination?.id
-                if (currentDestination == R.id.mapFragment) {
+                if (navController.currentDestination?.id == R.id.mapFragment) {
                     navController.navigate(
                         MapFragmentDirections.actionMapFragmentToParkDetailFragment(it.id)
                     )
@@ -97,8 +100,29 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // Puoi gestire la visibilità del progress bar qui se vuoi
+        viewModel.weather.observe(viewLifecycleOwner) { weather ->
+            if (weather != null) {
+                val tempText = "${weather.main.temp}°C"
+
+                val conditionRaw = weather.weather.firstOrNull()?.description ?: "N/D"
+                val conditionEmoji = when (weather.weather.firstOrNull()?.main?.lowercase()) {
+                    "clear" -> "☀️"
+                    "clouds" -> "☁️"
+                    "rain" -> "🌧️"
+                    "drizzle" -> "🌦️"
+                    "thunderstorm" -> "⛈️"
+                    "snow" -> "❄️"
+                    "mist", "fog", "haze", "smoke" -> "\uD83C\uDF2B️" // 🌫️
+                    else -> "🌡️"
+                }
+
+                val conditionText = "${conditionEmoji} ${conditionRaw.replaceFirstChar { it.uppercase() }}"
+                tvWeatherTempMap.text = tempText
+                tvWeatherConditionMap.text = conditionText
+            } else {
+                tvWeatherTempMap.text = "--°C"
+                tvWeatherConditionMap.text = "🌡️ Meteo non disponibile"
+            }
         }
 
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->

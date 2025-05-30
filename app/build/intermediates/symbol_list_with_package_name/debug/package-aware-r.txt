@@ -3199,6 +3199,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable recycler_background_no_shadow
+drawable rounded_bg
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3727,7 +3728,9 @@ id tv_park_name
 id tv_park_opening_hours
 id tv_park_rating
 id tv_weather_condition
+id tv_weather_condition_map
 id tv_weather_humidity
+id tv_weather_temp_map
 id tv_weather_temperature
 id unchecked
 id uniform
@@ -3743,6 +3746,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id weather_info_container
 id west
 id wide
 id withText
