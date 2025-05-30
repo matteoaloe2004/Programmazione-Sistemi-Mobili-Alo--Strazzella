@@ -83,11 +83,15 @@ class MapViewModel(
         updateFavoriteParks()
     }
 
+
     private fun updateFavoriteParks() {
         val current = nearbyParks.value ?: return
         _favoriteParks.value = current.filter { favoriteIds.contains(it.id) }
     }
-
+    fun removeFavorite(park: Park) {
+        favoriteIds.remove(park.id)  // Rimuovi l'id dai preferiti
+        updateFavoriteParks()         // Aggiorna la lista di preferiti
+    }
     fun loadFavoriteParks() {
         updateFavoriteParks()
     }

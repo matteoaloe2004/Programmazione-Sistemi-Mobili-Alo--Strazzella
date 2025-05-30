@@ -9,6 +9,7 @@ color secondaryLightColor
 color teal_200
 color white
 drawable ic_access_time_24
+drawable ic_baseline_delete_24
 drawable ic_directions_walk_24
 drawable ic_favorite
 drawable ic_launcher_background
@@ -17,10 +18,14 @@ drawable ic_local_offer_24
 drawable ic_location_on_24
 drawable ic_menu
 drawable ic_star_24
+drawable recycler_background_no_shadow
+id action_favoriteParksFragment_to_mapFragment
+id action_favoriteParksFragment_to_parkDetailFragment
 id action_mapFragment_to_favoriteParksFragment
 id action_mapFragment_to_parkDetailFragment
 id action_parkDetailFragment_to_mapFragment
 id btn_back_to_map
+id btn_remove_favorite
 id btn_toggle_favorite
 id card_info
 id drawer_layout

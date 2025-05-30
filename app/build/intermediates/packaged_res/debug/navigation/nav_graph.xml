@@ -33,5 +33,13 @@
     <fragment
         android:id="@+id/favoriteParksFragment"
         android:name="com.trovaparco.ui.favorite.FavoriteParksFragment"
-        android:label="FavoriteParksFragment" />
+        android:label="FavoriteParksFragment">
+        <action
+            android:id="@+id/action_favoriteParksFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_favoriteParksFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+    </fragment>
+
 </navigation>

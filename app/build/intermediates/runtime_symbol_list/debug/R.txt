@@ -3099,6 +3099,7 @@ int drawable googleg_disabled_color_18 0x7f070099
 int drawable googleg_standard_color_18 0x7f07009a
 int drawable ic_access_time_24 0x7f07009b
 int drawable ic_arrow_back_black_24 0x7f07009c
+int drawable ic_baseline_delete_24 0x7f070102
 int drawable ic_call_answer 0x7f07009d
 int drawable ic_call_answer_low 0x7f07009e
 int drawable ic_call_answer_video 0x7f07009f
@@ -3196,6 +3197,7 @@ int drawable notification_template_icon_bg 0x7f0700f9
 int drawable notification_template_icon_low_bg 0x7f0700fa
 int drawable notification_tile_bg 0x7f0700fb
 int drawable notify_panel_notification_icon_bg 0x7f0700fc
+int drawable recycler_background_no_shadow 0x7f070101
 int drawable test_level_drawable 0x7f0700fd
 int drawable tooltip_frame_dark 0x7f0700fe
 int drawable tooltip_frame_light 0x7f0700ff
@@ -3260,6 +3262,8 @@ int id action_bar_title 0x7f080039
 int id action_container 0x7f08003a
 int id action_context_bar 0x7f08003b
 int id action_divider 0x7f08003c
+int id action_favoriteParksFragment_to_mapFragment 0x7f080220
+int id action_favoriteParksFragment_to_parkDetailFragment 0x7f080221
 int id action_image 0x7f08003d
 int id action_mapFragment_to_favoriteParksFragment 0x7f08021d
 int id action_mapFragment_to_parkDetailFragment 0x7f08003e
@@ -3304,6 +3308,7 @@ int id bounceBoth 0x7f080064
 int id bounceEnd 0x7f080065
 int id bounceStart 0x7f080066
 int id btn_back_to_map 0x7f080067
+int id btn_remove_favorite 0x7f080222
 int id btn_toggle_favorite 0x7f08021a
 int id buttonPanel 0x7f080068
 int id cache_measures 0x7f080069

@@ -86,9 +86,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         viewModel.selectedPark.observe(viewLifecycleOwner) { park ->
             park?.let {
-                findNavController().navigate(
-                    MapFragmentDirections.actionMapFragmentToParkDetailFragment(it.id)
-                )
+                val navController = findNavController()
+                val currentDestination = navController.currentDestination?.id
+                if (currentDestination == R.id.mapFragment) {
+                    navController.navigate(
+                        MapFragmentDirections.actionMapFragmentToParkDetailFragment(it.id)
+                    )
+                }
                 viewModel.clearSelectedPark()
             }
         }

@@ -4,10 +4,11 @@ package com.trovaparco.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.trovaparco.R;
@@ -17,19 +18,24 @@ import java.lang.String;
 
 public final class ItemParkBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final ImageButton btnRemoveFavorite;
 
   @NonNull
   public final TextView tvParkName;
 
-  private ItemParkBinding(@NonNull LinearLayout rootView, @NonNull TextView tvParkName) {
+  private ItemParkBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ImageButton btnRemoveFavorite, @NonNull TextView tvParkName) {
     this.rootView = rootView;
+    this.btnRemoveFavorite = btnRemoveFavorite;
     this.tvParkName = tvParkName;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -54,13 +60,19 @@ public final class ItemParkBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_remove_favorite;
+      ImageButton btnRemoveFavorite = ViewBindings.findChildViewById(rootView, id);
+      if (btnRemoveFavorite == null) {
+        break missingId;
+      }
+
       id = R.id.tv_park_name;
       TextView tvParkName = ViewBindings.findChildViewById(rootView, id);
       if (tvParkName == null) {
         break missingId;
       }
 
-      return new ItemParkBinding((LinearLayout) rootView, tvParkName);
+      return new ItemParkBinding((ConstraintLayout) rootView, btnRemoveFavorite, tvParkName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,6 +4,7 @@ package com.trovaparco.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,14 +22,19 @@ public final class FragmentFavoriteParksBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Button btnBackToMap;
+
+  @NonNull
   public final RecyclerView recyclerFavoriteParks;
 
   @NonNull
   public final TextView tvFavoritesTitle;
 
   private FragmentFavoriteParksBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView recyclerFavoriteParks, @NonNull TextView tvFavoritesTitle) {
+      @NonNull Button btnBackToMap, @NonNull RecyclerView recyclerFavoriteParks,
+      @NonNull TextView tvFavoritesTitle) {
     this.rootView = rootView;
+    this.btnBackToMap = btnBackToMap;
     this.recyclerFavoriteParks = recyclerFavoriteParks;
     this.tvFavoritesTitle = tvFavoritesTitle;
   }
@@ -60,6 +66,12 @@ public final class FragmentFavoriteParksBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back_to_map;
+      Button btnBackToMap = ViewBindings.findChildViewById(rootView, id);
+      if (btnBackToMap == null) {
+        break missingId;
+      }
+
       id = R.id.recycler_favorite_parks;
       RecyclerView recyclerFavoriteParks = ViewBindings.findChildViewById(rootView, id);
       if (recyclerFavoriteParks == null) {
@@ -72,8 +84,8 @@ public final class FragmentFavoriteParksBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentFavoriteParksBinding((ConstraintLayout) rootView, recyclerFavoriteParks,
-          tvFavoritesTitle);
+      return new FragmentFavoriteParksBinding((ConstraintLayout) rootView, btnBackToMap,
+          recyclerFavoriteParks, tvFavoritesTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

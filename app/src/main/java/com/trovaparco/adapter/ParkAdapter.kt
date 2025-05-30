@@ -3,25 +3,31 @@ package com.trovaparco.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.trovaparco.R
 import com.trovaparco.data.model.Park
 
-class ParkAdapter(
+class ParksAdapter(
     private var parks: List<Park>,
-    private val onParkClick: (Park) -> Unit
-) : RecyclerView.Adapter<ParkAdapter.ParkViewHolder>() {
+    private val onParkClick: (Park) -> Unit,
+    private val onRemoveClick: (Park) -> Unit
+) : RecyclerView.Adapter<ParksAdapter.ParkViewHolder>() {
 
     inner class ParkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvParkName: TextView = itemView.findViewById(R.id.tv_park_name)
+        private val tvParkName: TextView = itemView.findViewById(R.id.tv_park_name)
+        private val btnRemoveFavorite: ImageButton = itemView.findViewById(R.id.btn_remove_favorite)
 
-        init {
+        fun bind(park: Park) {
+            tvParkName.text = park.name
+
             itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onParkClick(parks[position])
-                }
+                onParkClick(park)
+            }
+
+            btnRemoveFavorite.setOnClickListener {
+                onRemoveClick(park)
             }
         }
     }
@@ -33,8 +39,7 @@ class ParkAdapter(
     }
 
     override fun onBindViewHolder(holder: ParkViewHolder, position: Int) {
-        val park = parks[position]
-        holder.tvParkName.text = park.name
+        holder.bind(parks[position])
     }
 
     override fun getItemCount(): Int = parks.size
