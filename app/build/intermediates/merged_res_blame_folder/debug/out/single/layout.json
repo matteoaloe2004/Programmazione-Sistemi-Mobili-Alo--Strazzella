@@ -4,6 +4,14 @@
         "source": "com.trovaparco.app-main-54:/layout/fragment_park_detail.xml"
     },
     {
+        "merged": "com.trovaparco.app-mergeDebugResources-51:/layout/fragment_favorite_parks.xml",
+        "source": "com.trovaparco.app-main-54:/layout/fragment_favorite_parks.xml"
+    },
+    {
+        "merged": "com.trovaparco.app-mergeDebugResources-51:/layout/item_park.xml",
+        "source": "com.trovaparco.app-main-54:/layout/item_park.xml"
+    },
+    {
         "merged": "com.trovaparco.app-mergeDebugResources-51:/layout/activity_main.xml",
         "source": "com.trovaparco.app-main-54:/layout/activity_main.xml"
     },

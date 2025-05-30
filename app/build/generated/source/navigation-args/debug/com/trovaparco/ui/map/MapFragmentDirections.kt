@@ -1,6 +1,7 @@
 package com.trovaparco.ui.map
 
 import android.os.Bundle
+import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavDirections
 import com.trovaparco.R
 import kotlin.Int
@@ -23,5 +24,8 @@ public class MapFragmentDirections private constructor() {
   public companion object {
     public fun actionMapFragmentToParkDetailFragment(parkId: String): NavDirections =
         ActionMapFragmentToParkDetailFragment(parkId)
+
+    public fun actionMapFragmentToFavoriteParksFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_mapFragment_to_favoriteParksFragment)
   }
 }

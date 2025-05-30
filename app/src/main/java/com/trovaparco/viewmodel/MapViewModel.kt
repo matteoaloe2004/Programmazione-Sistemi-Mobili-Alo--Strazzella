@@ -69,6 +69,28 @@ class MapViewModel(
             )
         }
     }
+    private val _favoriteParks = MutableLiveData<List<Park>>()
+    val favoriteParks: LiveData<List<Park>> = _favoriteParks
+
+    private val favoriteIds = mutableSetOf<String>()
+
+    fun toggleFavorite(park: Park) {
+        if (favoriteIds.contains(park.id)) {
+            favoriteIds.remove(park.id)
+        } else {
+            favoriteIds.add(park.id)
+        }
+        updateFavoriteParks()
+    }
+
+    private fun updateFavoriteParks() {
+        val current = nearbyParks.value ?: return
+        _favoriteParks.value = current.filter { favoriteIds.contains(it.id) }
+    }
+
+    fun loadFavoriteParks() {
+        updateFavoriteParks()
+    }
 
     fun clearSelectedPark() {
         _selectedPark.value = null

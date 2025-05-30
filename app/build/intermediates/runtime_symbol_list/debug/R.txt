@@ -3108,6 +3108,7 @@ int drawable ic_call_decline_low 0x7f0700a2
 int drawable ic_clear_black_24 0x7f0700a3
 int drawable ic_clock_black_24dp 0x7f0700a4
 int drawable ic_directions_walk_24 0x7f0700a5
+int drawable ic_favorite 0x7f070100
 int drawable ic_keyboard_black_24dp 0x7f0700a6
 int drawable ic_launcher_background 0x7f0700a7
 int drawable ic_launcher_foreground 0x7f0700a8
@@ -3260,6 +3261,7 @@ int id action_container 0x7f08003a
 int id action_context_bar 0x7f08003b
 int id action_divider 0x7f08003c
 int id action_image 0x7f08003d
+int id action_mapFragment_to_favoriteParksFragment 0x7f08021d
 int id action_mapFragment_to_parkDetailFragment 0x7f08003e
 int id action_menu_divider 0x7f08003f
 int id action_menu_presenter 0x7f080040
@@ -3302,6 +3304,7 @@ int id bounceBoth 0x7f080064
 int id bounceEnd 0x7f080065
 int id bounceStart 0x7f080066
 int id btn_back_to_map 0x7f080067
+int id btn_toggle_favorite 0x7f08021a
 int id buttonPanel 0x7f080068
 int id cache_measures 0x7f080069
 int id callMeasure 0x7f08006a
@@ -3389,7 +3392,9 @@ int id enterAlwaysCollapsed 0x7f0800bb
 int id exitUntilCollapsed 0x7f0800bc
 int id expand_activities_button 0x7f0800bd
 int id expanded_menu 0x7f0800be
+int id fab_favorites 0x7f08021e
 int id fade 0x7f0800bf
+int id favoriteParksFragment 0x7f08021f
 int id fill 0x7f0800c0
 int id fill_horizontal 0x7f0800c1
 int id fill_vertical 0x7f0800c2
@@ -3585,6 +3590,7 @@ int id progress_horizontal 0x7f08017f
 int id radio 0x7f080180
 int id ratio 0x7f080181
 int id rectangles 0x7f080182
+int id recycler_favorite_parks 0x7f08021b
 int id report_drawn 0x7f080183
 int id reverseSawtooth 0x7f080184
 int id right 0x7f080185
@@ -3706,6 +3712,7 @@ int id transition_position 0x7f0801f8
 int id transition_scene_layoutid_cache 0x7f0801f9
 int id transition_transform 0x7f0801fa
 int id triangle 0x7f0801fb
+int id tv_favorites_title 0x7f08021c
 int id tv_park_address 0x7f0801fc
 int id tv_park_distance 0x7f0801fd
 int id tv_park_facilities 0x7f0801fe
@@ -3869,10 +3876,12 @@ int layout design_navigation_menu 0x7f0b0029
 int layout design_navigation_menu_item 0x7f0b002a
 int layout design_text_input_end_icon 0x7f0b002b
 int layout design_text_input_start_icon 0x7f0b002c
+int layout fragment_favorite_parks 0x7f0b006e
 int layout fragment_map 0x7f0b002d
 int layout fragment_park_detail 0x7f0b002e
 int layout ime_base_split_test_activity 0x7f0b002f
 int layout ime_secondary_split_test_activity 0x7f0b0030
+int layout item_park 0x7f0b006f
 int layout m3_alert_dialog 0x7f0b0031
 int layout m3_alert_dialog_actions 0x7f0b0032
 int layout m3_alert_dialog_title 0x7f0b0033

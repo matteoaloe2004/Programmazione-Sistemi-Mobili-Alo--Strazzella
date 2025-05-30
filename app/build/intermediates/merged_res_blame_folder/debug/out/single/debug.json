@@ -4,12 +4,12 @@
         "source": "com.trovaparco.app-main-54:/drawable/ic_location_on_24.xml"
     },
     {
-        "merged": "com.trovaparco.app-merged_res-52:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.trovaparco.app-main-54:/mipmap-xxxhdpi/ic_launcher.png"
-    },
-    {
         "merged": "com.trovaparco.app-merged_res-52:/drawable_ic_directions_walk_24.xml.flat",
         "source": "com.trovaparco.app-main-54:/drawable/ic_directions_walk_24.xml"
+    },
+    {
+        "merged": "com.trovaparco.app-merged_res-52:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.trovaparco.app-main-54:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
         "merged": "com.trovaparco.app-merged_res-52:/mipmap-xhdpi_ic_launcher_adaptive_back.png.flat",
@@ -38,6 +38,10 @@
     {
         "merged": "com.trovaparco.app-merged_res-52:/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "com.trovaparco.app-main-54:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.trovaparco.app-merged_res-52:/drawable_ic_favorite.xml.flat",
+        "source": "com.trovaparco.app-main-54:/drawable/ic_favorite.xml"
     },
     {
         "merged": "com.trovaparco.app-merged_res-52:/drawable_ic_star_24.xml.flat",
@@ -84,12 +88,20 @@
         "source": "com.trovaparco.app-main-54:/drawable/ic_menu.xml"
     },
     {
+        "merged": "com.trovaparco.app-merged_res-52:/layout_item_park.xml.flat",
+        "source": "com.trovaparco.app-main-54:/layout/item_park.xml"
+    },
+    {
         "merged": "com.trovaparco.app-merged_res-52:/drawable_ic_local_offer_24.xml.flat",
         "source": "com.trovaparco.app-main-54:/drawable/ic_local_offer_24.xml"
     },
     {
         "merged": "com.trovaparco.app-merged_res-52:/mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat",
         "source": "com.trovaparco.app-main-54:/mipmap-xhdpi/ic_launcher_adaptive_fore.png"
+    },
+    {
+        "merged": "com.trovaparco.app-merged_res-52:/layout_fragment_favorite_parks.xml.flat",
+        "source": "com.trovaparco.app-main-54:/layout/fragment_favorite_parks.xml"
     },
     {
         "merged": "com.trovaparco.app-merged_res-52:/layout_activity_main.xml.flat",

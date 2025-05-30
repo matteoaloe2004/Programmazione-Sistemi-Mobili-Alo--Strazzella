@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_mapFragment_to_parkDetailFragment"
             app:destination="@id/parkDetailFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_favoriteParksFragment"
+            app:destination="@id/favoriteParksFragment" />
     </fragment>
 
     <fragment
@@ -26,4 +29,9 @@
             app:popUpTo="@id/mapFragment"
             app:popUpToInclusive="false" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favoriteParksFragment"
+        android:name="com.trovaparco.ui.favorite.FavoriteParksFragment"
+        android:label="FavoriteParksFragment" />
 </navigation>

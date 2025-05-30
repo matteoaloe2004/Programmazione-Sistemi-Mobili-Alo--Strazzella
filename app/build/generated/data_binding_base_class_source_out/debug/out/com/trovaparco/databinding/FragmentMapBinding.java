@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.trovaparco.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,10 +21,15 @@ public final class FragmentMapBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final FloatingActionButton fabFavorites;
+
+  @NonNull
   public final ProgressBar progressBar;
 
-  private FragmentMapBinding(@NonNull ConstraintLayout rootView, @NonNull ProgressBar progressBar) {
+  private FragmentMapBinding(@NonNull ConstraintLayout rootView,
+      @NonNull FloatingActionButton fabFavorites, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
+    this.fabFavorites = fabFavorites;
     this.progressBar = progressBar;
   }
 
@@ -54,13 +60,19 @@ public final class FragmentMapBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.fab_favorites;
+      FloatingActionButton fabFavorites = ViewBindings.findChildViewById(rootView, id);
+      if (fabFavorites == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
         break missingId;
       }
 
-      return new FragmentMapBinding((ConstraintLayout) rootView, progressBar);
+      return new FragmentMapBinding((ConstraintLayout) rootView, fabFavorites, progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

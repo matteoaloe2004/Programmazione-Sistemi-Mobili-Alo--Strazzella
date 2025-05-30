@@ -27,6 +27,9 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   public final Button btnBackToMap;
 
   @NonNull
+  public final Button btnToggleFavorite;
+
+  @NonNull
   public final CardView cardInfo;
 
   @NonNull
@@ -60,14 +63,15 @@ public final class FragmentParkDetailBinding implements ViewBinding {
   public final TextView tvParkRating;
 
   private FragmentParkDetailBinding(@NonNull NestedScrollView rootView,
-      @NonNull Button btnBackToMap, @NonNull CardView cardInfo, @NonNull ImageView ivParkImage,
-      @NonNull View overlay, @NonNull ConstraintLayout parkDetailRoot,
-      @NonNull NestedScrollView scrollView, @NonNull TextView tvParkAddress,
-      @NonNull TextView tvParkDistance, @NonNull TextView tvParkFacilities,
-      @NonNull TextView tvParkName, @NonNull TextView tvParkOpeningHours,
-      @NonNull TextView tvParkRating) {
+      @NonNull Button btnBackToMap, @NonNull Button btnToggleFavorite, @NonNull CardView cardInfo,
+      @NonNull ImageView ivParkImage, @NonNull View overlay,
+      @NonNull ConstraintLayout parkDetailRoot, @NonNull NestedScrollView scrollView,
+      @NonNull TextView tvParkAddress, @NonNull TextView tvParkDistance,
+      @NonNull TextView tvParkFacilities, @NonNull TextView tvParkName,
+      @NonNull TextView tvParkOpeningHours, @NonNull TextView tvParkRating) {
     this.rootView = rootView;
     this.btnBackToMap = btnBackToMap;
+    this.btnToggleFavorite = btnToggleFavorite;
     this.cardInfo = cardInfo;
     this.ivParkImage = ivParkImage;
     this.overlay = overlay;
@@ -111,6 +115,12 @@ public final class FragmentParkDetailBinding implements ViewBinding {
       id = R.id.btn_back_to_map;
       Button btnBackToMap = ViewBindings.findChildViewById(rootView, id);
       if (btnBackToMap == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_toggle_favorite;
+      Button btnToggleFavorite = ViewBindings.findChildViewById(rootView, id);
+      if (btnToggleFavorite == null) {
         break missingId;
       }
 
@@ -176,9 +186,10 @@ public final class FragmentParkDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentParkDetailBinding((NestedScrollView) rootView, btnBackToMap, cardInfo,
-          ivParkImage, overlay, parkDetailRoot, scrollView, tvParkAddress, tvParkDistance,
-          tvParkFacilities, tvParkName, tvParkOpeningHours, tvParkRating);
+      return new FragmentParkDetailBinding((NestedScrollView) rootView, btnBackToMap,
+          btnToggleFavorite, cardInfo, ivParkImage, overlay, parkDetailRoot, scrollView,
+          tvParkAddress, tvParkDistance, tvParkFacilities, tvParkName, tvParkOpeningHours,
+          tvParkRating);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.trovaparco.R
 import com.trovaparco.data.model.Park
 import com.trovaparco.utils.isLocationEnabled
@@ -35,6 +36,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var googleMap: GoogleMap? = null
     private val markers = mutableMapOf<String, Marker>()
+    private lateinit var fabFavorites: FloatingActionButton
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -55,7 +57,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
@@ -64,6 +66,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         viewModel = ViewModelProvider(requireActivity())[MapViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        fabFavorites = view.findViewById(R.id.fab_favorites)
+        fabFavorites.setOnClickListener {
+            // Naviga alla lista dei parchi preferiti
+            findNavController().navigate(R.id.action_mapFragment_to_favoriteParksFragment)
+        }
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -77,16 +85,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         }
 
         viewModel.selectedPark.observe(viewLifecycleOwner) { park ->
-            if (park != null) {
+            park?.let {
                 findNavController().navigate(
-                    MapFragmentDirections.actionMapFragmentToParkDetailFragment(park.id)
+                    MapFragmentDirections.actionMapFragmentToParkDetailFragment(it.id)
                 )
                 viewModel.clearSelectedPark()
             }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // Gestisci indicatori di caricamento se vuoi
+            // Puoi gestire la visibilità del progress bar qui se vuoi
         }
 
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->

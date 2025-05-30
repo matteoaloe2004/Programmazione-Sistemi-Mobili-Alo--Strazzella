@@ -31,6 +31,7 @@ class ParkDetailFragment : Fragment() {
     private lateinit var tvParkDistance: TextView
     private lateinit var ivParkImage: ImageView
     private lateinit var btnBackToMap: Button
+    private lateinit var btnToggleFavorite: Button
 
     private var parkId: String = ""
 
@@ -46,6 +47,14 @@ class ParkDetailFragment : Fragment() {
         arguments?.getString("parkId")?.let {
             parkId = it
             viewModel.selectPark(parkId)
+        }
+        btnToggleFavorite = view.findViewById(R.id.btn_toggle_favorite)
+
+        btnToggleFavorite.setOnClickListener {
+            viewModel.selectedPark.value?.let {
+                viewModel.toggleFavorite(it)
+                Toast.makeText(requireContext(), "Preferiti aggiornati", Toast.LENGTH_SHORT).show()
+            }
         }
 
         observeViewModel()
@@ -121,9 +130,11 @@ class ParkDetailFragment : Fragment() {
         tvParkDistance.text = distanceText
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.clearSelectedPark()
         Log.d("NavDebug", "Cleared selectedPark onDestroyView")
     }
+
 }

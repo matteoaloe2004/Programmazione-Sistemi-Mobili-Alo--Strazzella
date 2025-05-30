@@ -3109,6 +3109,7 @@ drawable ic_call_decline_low
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_directions_walk_24
+drawable ic_favorite
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -3261,6 +3262,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
+id action_mapFragment_to_favoriteParksFragment
 id action_mapFragment_to_parkDetailFragment
 id action_menu_divider
 id action_menu_presenter
@@ -3303,6 +3305,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btn_back_to_map
+id btn_toggle_favorite
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3390,7 +3393,9 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fab_favorites
 id fade
+id favoriteParksFragment
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3586,6 +3591,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recycler_favorite_parks
 id report_drawn
 id reverseSawtooth
 id right
@@ -3707,6 +3713,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_favorites_title
 id tv_park_address
 id tv_park_distance
 id tv_park_facilities
@@ -3870,10 +3877,12 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_favorite_parks
 layout fragment_map
 layout fragment_park_detail
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_park
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
