@@ -60,20 +60,26 @@ class ParkRepository private constructor(
                 val response = apiService.getNearbyParksFromGoogle(location, radius, "park", apiKey)
 
                 if (response.status == "OK") {
-                    val parks = response.results.map {
-                        Park(
-                            id = it.place_id,
-                            name = it.name,
-                            description = "",
-                            latitude = it.geometry.location.lat,
-                            longitude = it.geometry.location.lng,
-                            address = "",
-                            facilities = emptyList(),
-                            images = emptyList(),
-                            openingHours = "",
-                            rating = 0f
-                        )
-                    }
+                    val parks = response.results
+                        .filter { place ->
+                            val types = place.types?.map { it.lowercase() } ?: emptyList()
+                            // Escludi i risultati che hanno "store" nei tipi
+                            "store" !in types
+                        }
+                        .map {
+                            Park(
+                                id = it.place_id,
+                                name = it.name,
+                                description = "",
+                                latitude = it.geometry.location.lat,
+                                longitude = it.geometry.location.lng,
+                                address = "",
+                                facilities = emptyList(),
+                                images = emptyList(),
+                                openingHours = "",
+                                rating = 0f
+                            )
+                        }
                     Result.success(parks)
                 } else {
                     Result.failure(Exception("Errore API Nearby Parks: ${response.status}"))

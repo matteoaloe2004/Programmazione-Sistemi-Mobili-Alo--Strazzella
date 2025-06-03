@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.trovaparco.R
 import com.trovaparco.data.model.Park
 import com.trovaparco.viewmodel.MapViewModel
+import kotlin.math.roundToInt
 
 class ParkDetailFragment : Fragment() {
 
@@ -158,13 +159,18 @@ class ParkDetailFragment : Fragment() {
         }
 
         val distanceMeters = userLocation.distanceTo(parkLocation)
+
         val distanceText = if (distanceMeters < 1000) {
-            "Distanza: ${distanceMeters.toInt()} m"
+            "${distanceMeters.toInt()} m"
         } else {
-            val km = distanceMeters / 1000
-            "Distanza: %.1f km".format(km)
+            "%.1f km".format(distanceMeters / 1000)
         }
-        tvParkDistance.text = distanceText
+
+        // 🚶‍♂️ Calcolo dei minuti a piedi (~1.4 m/s = 5 km/h)
+        val averageWalkingSpeedMetersPerSec = 1.4
+        val walkingTimeMinutes = (distanceMeters / averageWalkingSpeedMetersPerSec / 60).roundToInt()
+
+        tvParkDistance.text = "Distanza: $distanceText (${walkingTimeMinutes} min)"
     }
 
     private fun updateFavoriteButton() {

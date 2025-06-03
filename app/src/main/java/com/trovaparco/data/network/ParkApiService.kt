@@ -17,7 +17,16 @@ data class GooglePlaceResult(
     val types: List<String>
 )
 
-data class Geometry(val location: Location)
+data class Geometry(
+    val location: Location,
+    val viewport: Viewport? = null // aggiunto viewport per filtraggio dimensione
+)
+
+data class Viewport(
+    val northeast: Location,
+    val southwest: Location
+)
+
 data class Location(val lat: Double, val lng: Double)
 
 data class GooglePlacesResponse(
@@ -39,7 +48,7 @@ data class GooglePlaceDetailResult(
     val opening_hours: OpeningHours?,
     val types: List<String>?,
     val geometry: Geometry,
-    val photos: List<Photo>? = null  // Aggiunto photos
+    val photos: List<Photo>? = null // incluso photos
 )
 
 data class OpeningHours(
